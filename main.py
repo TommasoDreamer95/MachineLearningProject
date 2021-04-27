@@ -1,33 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import numpy , scipy
+from matrixUtilities import mcol
+import loadData
 
-def mcol(v):
-    return v.reshape((v.size, 1))
 
-def load_data():
-    DTE, LTE = load("./data/Test.txt")
-    DTR, LTR = load("./data/Train.txt")
-    return (DTE, LTE) , (DTR, LTR)
-    
-"""input = file name
-output : 
-    1) Data Matrix (#variates, #samples)
-    2) Labels vector (#samples) """
-def load(fileName):
-    f = open(fileName)
-    lista = []
-    classes = []  
-    for line in f:
-        if line != '\n':
-            numbers = [float(x) for x in line.split(",")[0:11]]
-            characteristics = mcol(numpy.array(numbers))
-            lista.append(characteristics)         
-            classNumber = line.split(",")[11]
-            classes.append(classNumber)         
-    matrix = numpy.hstack(lista) 
-    classLabels = numpy.array(classes, dtype=numpy.int32) 
-    return matrix, classLabels
 
 def covariance(D):
     mu = D.mean(1) #array con la media delle colonne della matrice
@@ -84,8 +61,11 @@ def LDA(DTR, LTR, m):
     return DP
 
 if __name__ == '__main__':
-    (DTE, LTE) , (DTR, LTR) = load_data()
+    (DTE, LTE) , (DTR, LTR) = loadData.load_data()
+    
+    """
     m=4  
     DTRPCA = PCA(DTR, m)
     DTRPCAplusLDA = LDA(DTRPCA, LTR, m)
+    """
     
