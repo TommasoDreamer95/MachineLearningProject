@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy , scipy
-from matrixUtilities import mcol
+from matrixUtilities import mcol, plot_hist
 import loadData
 
 
@@ -62,7 +62,7 @@ def LDA(DTR, LTR, m):
 
 if __name__ == '__main__':
     (DTE, LTE) , (DTR, LTR) = loadData.load_data()
-    
+    plot_hist(DTR, LTR);
     """
     m=4  
     DTRPCA = PCA(DTR, m)
