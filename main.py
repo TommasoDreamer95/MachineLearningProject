@@ -5,9 +5,11 @@ from matrixUtilities import mcol, plot_hist
 import loadData
 from PCA import PCA
 from LDA import LDA
-from testModel import TestModel
-from classificatori import computeMeanAndCovarianceForMultiVariate, computeMeanAndCovarianceForTied
-
+import testModel
+from testModel import testModel_MVG, testModel_Naive_Bayes
+from classificatori import computeMeanAndCovarianceForMultiVariate, \
+    computeMeanAndCovarianceForTied, create_sigma_diagonal
+#import classificatori
 
 def covariance(D):
     mu = D.mean(1) #array con la media delle colonne della matrice
@@ -33,15 +35,19 @@ def DataIndependecyAfterPCA(D):
     for m in range(2, D.shape[0]+1):
         DTRPCA = PCA(DTR, m)
         sigma = covariance(DTRPCA)
+        """
         print(m)
         print(sigma)
         print(spotDependency(sigma))
         print()
+        """
     
     sigma=covariance(D)    
+    """
     print(D.shape[0]+1)
     print(sigma)
     print(spotDependency(sigma))
+    """
     
 if __name__ == '__main__':
     (DTE, LTE) , (DTR, LTR) = loadData.load_data()
@@ -60,10 +66,15 @@ if __name__ == '__main__':
     """MVG"""
     mu, sigma = computeMeanAndCovarianceForMultiVariate(DTR, LTR)
     
+    """Naive Bayes"""
+    sigma_diag = create_sigma_diagonal(sigma)
+    acc_Naive, err_Naive, CM_Naive = testModel_Naive_Bayes(mu, sigma, DTE, LTE)
+    print("Error rate Naive Bayes without PCA: " + str(format(err_Naive * 100, ".2f")) + "%\n")
     """Tied"""  
     #mu, sigma = computeMeanAndCovarianceForTied(DTR, LTR)
 
     """calcolo accuratezza, errore e confusion matrix sui dati di test. Per ora il costo non è considerato"""
-    acc, err, CM = TestModel(mu, sigma, DTE, LTE)
+    acc_MVG, err_MVG, CM_MVG = testModel_MVG(mu, sigma, DTE, LTE)
+    print("Error rate MVG without PCA: " + str(format(err_MVG * 100, ".2f")) + "%\n")
     #print(CM)   
     #print(err)

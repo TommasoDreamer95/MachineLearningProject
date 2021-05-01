@@ -56,3 +56,15 @@ def computeSW(D,L):
     withinClassCovarianceMatrix = withinClassCovarianceMatrix / float(D.shape[1])
     #print(SW)
     return withinClassCovarianceMatrix
+
+"""
+compute sigma with only diagonal elements defined, for each class
+"""
+def create_sigma_diagonal(sigma):
+    num_classes = sigma.shape[0]
+    list_sigma = []
+    for index_class in range(num_classes):
+        sigma_class = sigma[index_class, :]
+        sigma_class = sigma_class * numpy.identity(sigma_class.shape[0])
+        list_sigma.append(sigma_class)
+    return numpy.array(list_sigma)
