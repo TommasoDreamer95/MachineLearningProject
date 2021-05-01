@@ -32,9 +32,10 @@ def plot_hist(D, L):
         10: 'alcohol'
         }
 
-    for dIdx in range(11):
+    for dIdx in range(0, D.shape[0]):
         plt.figure()
-        plt.xlabel(hFea[dIdx])
+        if D.shape[0] == 11:
+            plt.xlabel(hFea[dIdx])
         plt.hist(D0[dIdx, :], bins = 10, density = True, alpha = 0.4, label = 'Low quality wine')
         plt.hist(D1[dIdx, :], bins = 10, density = True, alpha = 0.4, label = 'High quality wine')
         
