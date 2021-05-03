@@ -23,16 +23,16 @@ if __name__ == '__main__':
     #m=4
     #DTRPCA = PCA(DTR, m)
     #DTRPCAplusLDA = LDA(DTRPCA, LTR, m)
-<<<<<<< HEAD
+
    # D_before_LDA = compute_data_LDA_Luca(DTR,LTR, m)
     
     
     
     
-    DataIndependecyAfterPCA(DTR)
-=======
+    
+
     #DataIndependecyAfterPCA(DTR)
->>>>>>> TommasoBranch
+
     
     #plot_hist(DTRPCA, LTR);
     
