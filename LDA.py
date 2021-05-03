@@ -7,7 +7,7 @@ Created on Sat May  1 09:32:11 2021
 
 import numpy
 import scipy.linalg
-from matrixUtilities import mcol
+from matrixUtilities import mcol, compute_num_classes
 
 
 """#input = data matrix and labels vector"""    
@@ -61,7 +61,8 @@ the SB matrix of the LDA algorithm
 """
 def computeSB_Luca(D, L, N, mu):
     SB = 0.0
-    for i in range(3):
+    k = compute_num_classes(L)
+    for i in range(k):
         Di = D[:, L==i]
         muc = Di.mean(axis=1)
         muc = mcol(muc)
@@ -80,7 +81,8 @@ the SW matrix of the LDA algorithm
 """
 def computeSW_Luca(D, L, N):
     SW = 0.0
-    for i in range(3):
+    k = compute_num_classes(L)
+    for i in range(k):
         Di = D[:, L==i]
         nc = Di.shape[1]
         muc = Di.mean(axis=1)
@@ -101,9 +103,9 @@ def compute_data_LDA_Luca(D, L, m):
     mu = D.mean(1) 
     mu = mcol(mu)
     N = D.shape[1]
-    SB = computeSB(D, L, N, mu)
+    SB = computeSB_Luca(D, L, N, mu)
     # --- COMPUTE SW -----
-    SW = computeSW(D, L, N)
+    SW = computeSW_Luca(D, L, N)
     s, U = scipy.linalg.eigh(SB, SW)
     #--- W is the matrix of the LDA
     W = U[:, ::-1][:, 0:m]

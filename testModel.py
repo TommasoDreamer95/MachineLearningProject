@@ -6,7 +6,7 @@ Created on Sat May  1 12:19:02 2021
 """
 
 import numpy , scipy.special, scipy.linalg
-from matrixUtilities import mcol
+from matrixUtilities import mcol, compute_num_classes
 
 """computing log-density, 
 input : 
@@ -64,12 +64,7 @@ def computeConfusionMatrix(SPost, LTE):
         CM[predictionClass , actualClass ] = CM[predictionClass , actualClass ] + 1
     return CM
 
-"""
-compute the number of classes, given the matrix of labels L
-"""
-def compute_num_classes(L):
-    # compute number of classes given vector L
-    return len(numpy.unique(L))
+
 
 """
 compute di gaussian density for a scalar

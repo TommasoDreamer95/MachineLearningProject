@@ -4,7 +4,7 @@ import numpy , scipy.special, scipy.linalg
 from matrixUtilities import mcol, plot_hist
 import loadData
 from PCA import PCA
-from LDA import LDA
+from LDA import LDA, compute_data_LDA_Luca
 import testModel
 from testModel import testModel_MVG, testModel_Naive_Bayes
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
@@ -57,6 +57,10 @@ if __name__ == '__main__':
     #m=4
     #DTRPCA = PCA(DTR, m)
     #DTRPCAplusLDA = LDA(DTRPCA, LTR, m)
+   # D_before_LDA = compute_data_LDA_Luca(DTR,LTR, m)
+    
+    
+    
     
     DataIndependecyAfterPCA(DTR)
     

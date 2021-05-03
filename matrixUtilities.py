@@ -6,9 +6,20 @@ Created on Tue Apr 27 18:31:01 2021
 """
 
 import matplotlib.pyplot as plt
+import numpy
 
+"""
+transform a matrix in a matrix with one column
+"""
 def mcol(v):
     return v.reshape((v.size, 1))
+
+"""
+compute the number of classes, given the matrix of labels L
+"""
+def compute_num_classes(L):
+    # compute number of classes given vector L
+    return len(numpy.unique(L))
 
 """
 plot histogram for some dimensions of the features
