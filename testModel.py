@@ -64,7 +64,7 @@ def computeConfusionMatrix(SPost, LTE):
         CM[predictionClass , actualClass ] = CM[predictionClass , actualClass ] + 1
     return CM
 
-<<<<<<< HEAD
+
 
 
 """
@@ -77,8 +77,6 @@ inpute:
 def GAU_scalar(x, mu, var):
     N = 1/(numpy.sqrt(2*numpy.pi * var)) * numpy.exp(-1* (x-mu)**2/(2*var))
     return N
-=======
->>>>>>> TommasoBranch
 
 
 """testa il modello (rappresentato dalla media e dalla covarianza sui dati di test
