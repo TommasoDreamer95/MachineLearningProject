@@ -6,48 +6,14 @@ import loadData
 from PCA import PCA
 from LDA import LDA, compute_data_LDA_Luca
 import testModel
-from testModel import testModel_MVG, testModel_Naive_Bayes
+from testModel import testModel
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
-    computeMeanAndCovarianceForTied, create_sigma_diagonal
-#import classificatori
+    computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes
+from spotDataDependency import DataIndependecyAfterPCA
+from split import leaveOneOutSplit
+from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction
 
-def covariance(D):
-    mu = D.mean(1) #array con la media delle colonne della matrice
-    
-    DC = D - mcol(mu)  #matrice centrata, in cui ad ogni colonna sottraggo la media
-    
-    C = numpy.dot(DC, DC.T) / float(DC.shape[1]) # C = 1/N * Dc * Dc Trasposta
-    return C   
 
-"""spots if an element out of the diagonal is greater than 1*10^-4
-returns true if the covariance matrix shows dependency between dimentions
-false otherwise """
-def spotDependency(sigma):
-    for i in range(0, sigma.shape[0]):
-        for j in range(0, sigma.shape[1]):
-            if i!=j:
-                if abs(sigma[i, j]) > 0.0001:
-                    return True
-    return False
-
-def DataIndependecyAfterPCA(D):
-    m = 0
-    for m in range(2, D.shape[0]+1):
-        DTRPCA = PCA(DTR, m)
-        sigma = covariance(DTRPCA)
-        """
-        print(m)
-        print(sigma)
-        print(spotDependency(sigma))
-        print()
-        """
-    
-    sigma=covariance(D)    
-    """
-    print(D.shape[0]+1)
-    print(sigma)
-    print(spotDependency(sigma))
-    """
     
 if __name__ == '__main__':
     (DTE, LTE) , (DTR, LTR) = loadData.load_data()
@@ -57,28 +23,36 @@ if __name__ == '__main__':
     #m=4
     #DTRPCA = PCA(DTR, m)
     #DTRPCAplusLDA = LDA(DTRPCA, LTR, m)
+<<<<<<< HEAD
    # D_before_LDA = compute_data_LDA_Luca(DTR,LTR, m)
     
     
     
     
     DataIndependecyAfterPCA(DTR)
+=======
+    #DataIndependecyAfterPCA(DTR)
+>>>>>>> TommasoBranch
     
     #plot_hist(DTRPCA, LTR);
+    
+    #compareAlgorithmsAndDimentionalityReduction(DTR, LTR)
     
     """applico il classificatore opportuno"""
     """MVG"""
     mu, sigma = computeMeanAndCovarianceForMultiVariate(DTR, LTR)
-    
     """Naive Bayes"""
-    sigma_diag = create_sigma_diagonal(sigma)
-    acc_Naive, err_Naive, CM_Naive = testModel_Naive_Bayes(mu, sigma, DTE, LTE)
-    print("Error rate Naive Bayes without PCA: " + str(format(err_Naive * 100, ".2f")) + "%\n")
+    _ ,sigma_diag = computeMeanAndCovarianceForNaiveBayes(DTR, LTR)
     """Tied"""  
-    #mu, sigma = computeMeanAndCovarianceForTied(DTR, LTR)
+    _, sigma_tied = computeMeanAndCovarianceForTied(DTR, LTR)
 
     """calcolo accuratezza, errore e confusion matrix sui dati di test. Per ora il costo non è considerato"""
-    acc_MVG, err_MVG, CM_MVG = testModel_MVG(mu, sigma, DTE, LTE)
+    acc_MVG, err_MVG, CM_MVG = testModel(mu, sigma, DTE, LTE)
     print("Error rate MVG without PCA: " + str(format(err_MVG * 100, ".2f")) + "%\n")
+    acc_Naive, err_Naive, CM_Naive = testModel(mu, sigma_diag, DTE, LTE)
+    print("Error rate Naive Bayes without PCA: " + str(format(err_Naive * 100, ".2f")) + "%\n")
+    acc_Tied, err_Tied, CM_Tied = testModel(mu, sigma_tied, DTE, LTE)
+    print("Error rate Tied without PCA: " + str(format(err_Tied * 100, ".2f")) + "%\n")
+    
     #print(CM)   
     #print(err)

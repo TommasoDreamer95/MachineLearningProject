@@ -24,6 +24,18 @@ def computeMeanAndCovarianceForMultiVariate(DTR, LTR):
         SigmaC[c] = numpy.dot(DC, DC.T) / float(DC.shape[1]) # C = 1/N * Dc * Dc Trasposta
     return mu, SigmaC
 
+"""calcola la media mu e la covarianza sigma del modello Naive Bayes
+input: 
+    1) Matrice di training (#variates, #sample di training)
+    2) Vettore label di training (#sample di training)
+output: 
+    1) vettore contenente #classi di vettori da (#variabili casuali del sample) elementi
+    2) vettore contenente #classi di matrici diagonali e quadrate da (#variabili casuali del sample) elementi per lato""" 
+def computeMeanAndCovarianceForNaiveBayes(DTR, LTR):
+    mu, sigma = computeMeanAndCovarianceForMultiVariate(DTR, LTR)
+    sigma = sigma * numpy.eye(DTR.shape[0])
+    return mu, sigma
+
 """calcola la media mu e la covarianza sigma del modello Tied Covariance
 input: 
     1) Matrice di training (#variates, #sample di training)
@@ -54,7 +66,7 @@ def computeSW(D,L):
         for i in range(0, Dc.shape[1]):  
             withinClassCovarianceMatrix = withinClassCovarianceMatrix + numpy.dot( mcol(Dc[:, i] - muc), mcol(Dc[:, i] - muc).T)
     withinClassCovarianceMatrix = withinClassCovarianceMatrix / float(D.shape[1])
-    #print(SW)
+    #print(withinClassCovarianceMatrix)
     return withinClassCovarianceMatrix
 
 """
