@@ -9,6 +9,7 @@ Created on Mon May  3 21:10:29 2021
 
 
 from PCA import PCA
+from LDA import compute_data_LDA
 
 from testModel import testModel
 
@@ -96,3 +97,62 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
         DTRPCA = PCA(DTR, m)
         acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
         print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
+        
+        
+def compareLDA(DTR, LTR):
+    m = 0
+    for m in range(2, DTR.shape[0]+1):
+        #DTRPCA = PCA(DTR, m)
+        DTRLDA = compute_data_LDA(DTR, LTR, m)
+        #acc_MVG,err_MVG = kFold(DTRPCA, LTR, 0)
+        acc_MVG,err_MVG = kFold(DTRLDA, LTR, 0)
+        #print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+        print("Error rate MVG with LDA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+    
+    m = 0
+    for m in range(2, DTR.shape[0]+1):
+        #DTRPCA = PCA(DTR, m)
+        DTRLDA = compute_data_LDA(DTR, LTR, m)
+        #acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
+        acc_Naive, err_Naive = kFold(DTRLDA, LTR, 1)
+        #print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
+        print("Error rate Naive Bayes with LDA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
+    
+    m = 0
+    for m in range(2, DTR.shape[0]+1):
+        DTRLDA = compute_data_LDA(DTR, LTR, m)
+        acc_Tied, err_Tied = kFold(DTRLDA, LTR, 2)
+        print("Error rate Tied with LDA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
+
+"""compare PCA and after LDA"""
+def compare_PCA_before_LDA(DTR, LTR):
+    """
+    m_PCA = 0
+    for m_PCA in range(2, DTR.shape[0]):
+        DTRPCA = PCA(DTR, m_PCA)
+        for m_LDA in range(2, m_PCA):
+            DTRLDA = compute_data_LDA(DTR, LTR, m_LDA)
+            acc_MVG,err_MVG = kFold(DTRLDA, LTR, 0)
+            print("Error rate MVG with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+    """
+    
+    # compute statistics for Naive Bayes
+    """
+    m_PCA = 0
+    for m_PCA in range(2, DTR.shape[0]):
+        DTRPCA = PCA(DTR, m_PCA)
+        for m_LDA in range(2, m_PCA):
+            DTRLDA = compute_data_LDA(DTR, LTR, m_LDA)
+            acc_MVG,err_MVG = kFold(DTRLDA, LTR, 1)
+            print("Error rate Naive Bayes with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+    """
+    
+    # compute statistics fot Tied classifier
+    m_PCA = 0
+    for m_PCA in range(2, DTR.shape[0]):
+        DTRPCA = PCA(DTR, m_PCA)
+        for m_LDA in range(2, m_PCA):
+            DTRLDA = compute_data_LDA(DTR, LTR, m_LDA)
+            acc_MVG,err_MVG = kFold(DTRLDA, LTR, 2)
+            print("Error rate Tied with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+    
