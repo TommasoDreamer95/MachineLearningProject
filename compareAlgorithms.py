@@ -126,15 +126,15 @@ def compareLDA(DTR, LTR):
 
 """compare PCA and after LDA"""
 def compare_PCA_before_LDA(DTR, LTR):
-    """
+    
     m_PCA = 0
     for m_PCA in range(2, DTR.shape[0]):
         DTRPCA = PCA(DTR, m_PCA)
         for m_LDA in range(2, m_PCA):
-            DTRLDA = compute_data_LDA(DTR, LTR, m_LDA)
+            DTRLDA = compute_data_LDA(DTRPCA, LTR, m_LDA)
             acc_MVG,err_MVG = kFold(DTRLDA, LTR, 0)
             print("Error rate MVG with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
-    """
+    
     
     # compute statistics for Naive Bayes
     """
@@ -142,12 +142,13 @@ def compare_PCA_before_LDA(DTR, LTR):
     for m_PCA in range(2, DTR.shape[0]):
         DTRPCA = PCA(DTR, m_PCA)
         for m_LDA in range(2, m_PCA):
-            DTRLDA = compute_data_LDA(DTR, LTR, m_LDA)
-            acc_MVG,err_MVG = kFold(DTRLDA, LTR, 1)
-            print("Error rate Naive Bayes with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+            DTRLDA = compute_data_LDA(DTRPCA, LTR, m_LDA)
+            acc_Naive, err_Naive = kFold(DTRLDA, LTR, 1)
+            print("Error rate Naive Bayes with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
     """
     
     # compute statistics fot Tied classifier
+    """
     m_PCA = 0
     for m_PCA in range(2, DTR.shape[0]):
         DTRPCA = PCA(DTR, m_PCA)
@@ -155,4 +156,4 @@ def compare_PCA_before_LDA(DTR, LTR):
             DTRLDA = compute_data_LDA(DTRPCA, LTR, m_LDA)
             acc_Tied ,err_Tied = kFold(DTRLDA, LTR, 2)
             print("Error rate Tied with PCA (m=" + str(m_PCA) + ") and then LDA(m = " + str(m_LDA) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
-    
+   """ 
