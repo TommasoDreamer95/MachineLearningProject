@@ -24,7 +24,9 @@ def logpdf_GAU_ND(XND, mu, C):
     sigma_inverse = numpy.linalg.inv(sigma)
     list_values = []
     for i in range(XND.shape[1]):
-        list_values.append( -1/2 * numpy.dot(numpy.dot((XND[:, i:i+1]-mu).T, sigma_inverse), (XND[:, i:i+1] - mu)))
+        firstTerm = numpy.dot((XND[:, i:i+1]-mu).T, sigma_inverse)
+        secondTerm = (XND[:, i:i+1] - mu)
+        list_values.append( -1/2 * numpy.dot(firstTerm, secondTerm))
     
     log_density = numpy.vstack(list_values)
     log_density += pref_dens
