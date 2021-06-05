@@ -105,3 +105,22 @@ def testModel(mu, sigma, DTE, LTE):
     CM = computeConfusionMatrix(SPost, LTE)
     return acc, err, CM
     
+def testLogisticRegression(w, b, DTE, LTE):
+    n = DTE.shape[1]
+    s = numpy.zeros((n), dtype="float64")
+    LP = numpy.zeros((n), dtype="float64")
+    for i in range(0, n):
+        s[i] = numpy.dot(w.T, DTE[:, i]) + b
+        #print(s[i])
+        LP[i]=0
+        if s[i] > 0 :
+            LP[i] = 1        
+    
+    correct = 0
+    for i in range(0, LTE.shape[0]):
+        if LP[i] == LTE[i]:
+               correct = correct + 1
+               
+    acc = correct / LTE.shape[0]
+    err = 1 - acc
+    return acc, err

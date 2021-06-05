@@ -7,9 +7,9 @@ from PCA import PCA
 #from LDA import LDA, compute_data_LDA_Luca
 from LDA import compute_data_LDA
 import testModel
-from testModel import testModel
+from testModel import testModel, testLogisticRegression
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
-    computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes
+    computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes, computeParametersForLogisticRegression
 from spotDataDependency import DataIndependecyAfterPCA
 from split import leaveOneOutSplit
 from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, \
@@ -43,28 +43,41 @@ if __name__ == '__main__':
     
     """applico il classificatore opportuno"""
     """MVG"""
-    mu, sigma = computeMeanAndCovarianceForMultiVariate(DTR, LTR)
+    #mu, sigma = computeMeanAndCovarianceForMultiVariate(DTR, LTR)
     """Naive Bayes"""
-    _ ,sigma_diag = computeMeanAndCovarianceForNaiveBayes(DTR, LTR)
+    #_ ,sigma_diag = computeMeanAndCovarianceForNaiveBayes(DTR, LTR)
     """Tied"""  
-    _, sigma_tied = computeMeanAndCovarianceForTied(DTR, LTR)
+    #_, sigma_tied = computeMeanAndCovarianceForTied(DTR, LTR)
+    """Logistic Regression"""
+    l = 1/1000
+    w, b = computeParametersForLogisticRegression(DTR, LTR, l)
 
     
     """calcolo accuratezza, errore e confusion matrix sui dati di test. Per ora il costo non è considerato"""
+    """
     acc_MVG, err_MVG, CM_MVG = testModel(mu, sigma, DTE, LTE)
     print("Error rate MVG without PCA: " + str(format(err_MVG * 100, ".2f")) + "%\n")
     acc_Naive, err_Naive, CM_Naive = testModel(mu, sigma_diag, DTE, LTE)
     print("Error rate Naive Bayes without PCA: " + str(format(err_Naive * 100, ".2f")) + "%\n")
     acc_Tied, err_Tied, CM_Tied = testModel(mu, sigma_tied, DTE, LTE)
     print("Error rate Tied without PCA: " + str(format(err_Tied * 100, ".2f")) + "%\n")
+    """
+    acc_LogReg, err_LogReg = testLogisticRegression(w, b, DTE, LTE)
+    print("Error rate Logistic Regression without PCA: " + str(format(err_LogReg * 100, ".2f")) + "%\n")
+    
+    
     
     """Compare LDA with different algorithms"""
     #compareLDA(DTR, LTR)
     #compare_PCA_before_LDA(DTR, LTR)
     
     """compute error rate in the evaluation set with LDA with m=3 using Naive Bayes classifier"""
-    m = 3
-    DTRLDA = compute_data_LDA(DTR, LTR, 3)
-    DTELDA = compute_data_LDA(DTE, LTE, 3)
-    acc_LDA, err_LDA = applyAndTestModels(DTRLDA, LTR, DTELDA, LTE, 1)
+    """
+    m = 9
+    n = 8
+    DTRPCA = PCA(DTR, m)
+    DTRLDA = compute_data_LDA(DTRPCA, LTR, n)
+    DTELDA = compute_data_LDA(DTE, LTE, n)
+    acc_LDA, err_LDA = applyAndTestModels(DTRLDA, LTR, DTELDA, LTE, 2)
     print("Accuracy with test data with LDA m={}: ".format(str(m)) + str(format(err_LDA * 100, ".2f")) + "%\n")
+    """

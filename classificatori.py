@@ -80,3 +80,26 @@ def create_sigma_diagonal(sigma):
         sigma_class = sigma_class * numpy.identity(sigma_class.shape[0])
         list_sigma.append(sigma_class)
     return numpy.array(list_sigma)
+
+
+def logreg_obj(v, DTR, LTR, l):
+    w, b = v[0:-1], v[-1]    
+    firstTerm = (l * numpy.linalg.norm(w)**2 ) / 2     
+    totalSum = 0
+    n = DTR.shape[1]
+    for i in range(0, n):
+        zi = -1
+        if LTR[i] == 1:
+            zi = 1
+        prod = numpy.dot(w.T, DTR[: , i])
+        thisSum = numpy.log1p( numpy.exp( (- zi)*(prod + b) ) )
+        totalSum = totalSum + thisSum
+    secondTerm = totalSum / n
+    result = firstTerm + secondTerm 
+    return result
+
+def computeParametersForLogisticRegression(DTR, LTR, l):     
+    v = numpy.zeros(DTR.shape[0] + 1) 
+    (x, f, _) = scipy.optimize.fmin_l_bfgs_b(logreg_obj, v, args=(DTR, LTR, l), approx_grad=True)  
+    w, b = x[0:-1], x[-1]
+    return w, b
