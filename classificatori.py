@@ -82,6 +82,9 @@ def create_sigma_diagonal(sigma):
     return numpy.array(list_sigma)
 
 
+"""
+called many times during logistic regression, in order to get the minimizer parameters
+"""
 def logreg_obj(v, DTR, LTR, l):
     w, b = v[0:-1], v[-1]    
     firstTerm = (l * numpy.linalg.norm(w)**2 ) / 2     
@@ -103,3 +106,52 @@ def computeParametersForLogisticRegression(DTR, LTR, l):
     (x, f, _) = scipy.optimize.fmin_l_bfgs_b(logreg_obj, v, args=(DTR, LTR, l), approx_grad=True)  
     w, b = x[0:-1], x[-1]
     return w, b
+
+"""from here on, linear SVM"""
+def buildExtendedMatrix (D, k):
+    Dhat = numpy.zeros( (D.shape[0]+1, D.shape[1]), dtype="float64")
+    for i in range(0,D.shape[0]):
+        Dhat[i] = D[i]
+    Dhat[D.shape[0]] = numpy.zeros( (D.shape[1]), dtype="float64") + k
+    return Dhat
+def computeHhatLinear(Dhat, LTR):
+    Ghat = numpy.dot(Dhat.T, Dhat)
+    z = numpy.equal.outer(LTR, LTR)
+    z = z * 2 -1
+    Hhat = z * Ghat 
+    return Hhat
+
+def findDualSolutionByMinimization(computeNegativeObj, alpha, Hhat, C, DTR):
+    boundaries = numpy.zeros((DTR.shape[1], 2), dtype="float64")
+    boundaries[:, 1] = boundaries[:, 1] + C
+    (optimalAlpha, dualSolution, _) = scipy.optimize.fmin_l_bfgs_b(computeNegativeObj, alpha, args=(Hhat,), approx_grad=False
+                                                        , bounds = boundaries, factr = 1.0, maxfun = 15000, maxiter=15000)
+    return (optimalAlpha, dualSolution)
+
+def computeNegativeObj(alpha, Hhat):
+    Ones = numpy.zeros((alpha.shape[0]), dtype="float64" ) +1
+    L = numpy.dot(numpy.dot(alpha.T, Hhat), alpha) / 2 - numpy.dot(alpha.T,Ones)
+    gradientL = numpy.dot(Hhat, alpha) - Ones
+    return L, gradientL
+
+def computeWfromAlpha(alpha, LTR, Dhat):
+    w = 0
+    for i in range(0, LTR.shape[0]):
+        zi = LTR[i]
+        if zi == 0:
+            zi = -1
+        w = w + alpha[i] * zi * Dhat[:, i] 
+    return w
+
+def computeParametersForLinearSVM(DTR, LTR, k, C):
+    Dhat = buildExtendedMatrix(DTR, k)
+    Hhat = computeHhatLinear(Dhat, LTR)
+    
+    alpha = numpy.zeros((DTR.shape[1]), dtype="float64")
+        
+    (optimalAlpha, dualSolution) = findDualSolutionByMinimization(computeNegativeObj, alpha, Hhat, C, DTR)    
+  
+    
+    wHatStar = computeWfromAlpha(optimalAlpha, LTR, Dhat)
+    
+    return wHatStar

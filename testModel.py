@@ -7,6 +7,7 @@ Created on Sat May  1 12:19:02 2021
 
 import numpy , scipy.special, scipy.linalg
 from matrixUtilities import mcol, compute_num_classes
+from classificatori import buildExtendedMatrix
 
 """computing log-density, 
 input : 
@@ -104,6 +105,22 @@ def testModel(mu, sigma, DTE, LTE):
     acc, err = computeError(SPost, LTE)
     CM = computeConfusionMatrix(SPost, LTE)
     return acc, err, CM
+
+def computeErrorRate(S, LTE):
+    n = LTE.shape[0]
+    LP = numpy.zeros((n), dtype="float64")
+    for i in range(0, n):
+        LP[i]=0
+        if S[i] > 0 :
+            LP[i] = 1        
+    correct = 0
+    for i in range(0, LTE.shape[0]):
+        if LP[i] == LTE[i]:
+               correct = correct + 1
+               
+    acc = correct / LTE.shape[0]
+    err = 1 - acc
+    return acc, err
     
 def testLogisticRegression(w, b, DTE, LTE):
     n = DTE.shape[1]
@@ -123,4 +140,11 @@ def testLogisticRegression(w, b, DTE, LTE):
                
     acc = correct / LTE.shape[0]
     err = 1 - acc
+    return acc, err
+
+def testLinearSVM(wHatStar, k, DTE,LTE):
+    DTEHat = buildExtendedMatrix(DTE, k)
+    S = numpy.dot(wHatStar.T, DTEHat)
+    
+    acc, err = computeErrorRate(S, LTE)
     return acc, err

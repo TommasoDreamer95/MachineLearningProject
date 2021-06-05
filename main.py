@@ -7,9 +7,10 @@ from PCA import PCA
 #from LDA import LDA, compute_data_LDA_Luca
 from LDA import compute_data_LDA
 import testModel
-from testModel import testModel, testLogisticRegression
+from testModel import testModel, testLogisticRegression, testLinearSVM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
-    computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes, computeParametersForLogisticRegression
+    computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes, computeParametersForLogisticRegression, \
+        computeParametersForLinearSVM
 from spotDataDependency import DataIndependecyAfterPCA
 from split import leaveOneOutSplit
 from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, \
@@ -49,9 +50,12 @@ if __name__ == '__main__':
     """Tied"""  
     #_, sigma_tied = computeMeanAndCovarianceForTied(DTR, LTR)
     """Logistic Regression"""
-    l = 1/1000
-    w, b = computeParametersForLogisticRegression(DTR, LTR, l)
-
+    l = 1/1000 #we should try different parameters for l such as [0, 1/1000000, 1/1000, 1]
+    #w, b = computeParametersForLogisticRegression(DTR, LTR, l)
+    """Linear SVM"""
+    k = 1
+    C = 0.1 # altri possibili valori Cvalues = [0.1, 1.0, 10.0]    Kvalues = [1, 10]
+    wHatStar = computeParametersForLinearSVM(DTR, LTR, k, C)
     
     """calcolo accuratezza, errore e confusion matrix sui dati di test. Per ora il costo non è considerato"""
     """
@@ -61,11 +65,11 @@ if __name__ == '__main__':
     print("Error rate Naive Bayes without PCA: " + str(format(err_Naive * 100, ".2f")) + "%\n")
     acc_Tied, err_Tied, CM_Tied = testModel(mu, sigma_tied, DTE, LTE)
     print("Error rate Tied without PCA: " + str(format(err_Tied * 100, ".2f")) + "%\n")
-    """
     acc_LogReg, err_LogReg = testLogisticRegression(w, b, DTE, LTE)
     print("Error rate Logistic Regression without PCA: " + str(format(err_LogReg * 100, ".2f")) + "%\n")
-    
-    
+    """
+    acc_LinSVM , err_LinSVM = testLinearSVM(wHatStar, k, DTE,LTE)
+    print("Error rate Linear SVM without PCA: " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
     
     """Compare LDA with different algorithms"""
     #compareLDA(DTR, LTR)
@@ -81,3 +85,4 @@ if __name__ == '__main__':
     acc_LDA, err_LDA = applyAndTestModels(DTRLDA, LTR, DTELDA, LTE, 2)
     print("Accuracy with test data with LDA m={}: ".format(str(m)) + str(format(err_LDA * 100, ".2f")) + "%\n")
     """
+    
