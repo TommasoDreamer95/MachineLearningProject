@@ -119,14 +119,14 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
             print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
     
         if m == 11:
-            acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
+            acc_Naive, err_Naive = kFold(DTR, LTR, 1)
             print("Error rate Naive Bayes NO PCA : " + str(format(err_Naive * 100, ".2f")) + "%\n")
         else:        
             acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
             print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
     
         if m == 11:
-            acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
+            acc_Tied, err_Tied = kFold(DTR, LTR, 2)
             print("Error rate Tied NO PCA : " + str(format(err_Tied * 100, ".2f")) + "%\n")
         else:
             acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
