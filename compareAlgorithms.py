@@ -77,7 +77,7 @@ input:
 Output:
     1)errore
     2) accuratezza"""
-def kFold(D, L, model, params):
+def kFold(D, L, model, params=[]):
     errors = []
     accuracies = []
     k = 3
@@ -110,18 +110,27 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
         
         DTRPCA = PCA(DTR, m)
         
-        """
         
-        acc_MVG,err_MVG = kFold(DTRPCA, LTR, 0)
-        print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+        if m == 11:
+            acc_MVG,err_MVG = kFold(DTR, LTR, 0)
+            print("Error rate MVG NO PCA : " + str(format(err_MVG * 100, ".2f")) + "%\n")
+        else:
+            acc_MVG,err_MVG = kFold(DTRPCA, LTR, 0)
+            print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
     
-        
-        acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
-        print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
+        if m == 11:
+            acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
+            print("Error rate Naive Bayes NO PCA : " + str(format(err_Naive * 100, ".2f")) + "%\n")
+        else:        
+            acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
+            print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
     
-        
-        acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
-        print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
+        if m == 11:
+            acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
+            print("Error rate Tied NO PCA : " + str(format(err_Tied * 100, ".2f")) + "%\n")
+        else:
+            acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
+            print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
       
         for l in [0, 1/1000000, 1/1000, 1]:
             params = []
@@ -134,7 +143,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 print("Error rate Logistic Regression with PCA (m=" + str(m) + ", l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
         
         DeltaL = 10e-6
-        for finalImpl in ["standard", "diagonal", "tied"]:
+        for finalImpl in ["standard", "diagonal"]:#, "tied"]:
             for finalGmms in [1,2,4,8,16]:
                 params = []
                 params.append(DeltaL)
@@ -146,7 +155,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 else:
                     acc_GMM, err_GMM = kFold(DTRPCA, LTR, 4, params)
                     print("Error rate Gaussian Mixture Model with PCA (m=" + str(m) + ", impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
-        """
+        
         for k in [1, 10]:
             for C in [0.1, 1.0, 10.0]:
                 params = []
