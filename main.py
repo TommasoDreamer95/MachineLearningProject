@@ -7,10 +7,10 @@ from PCA import PCA
 #from LDA import LDA, compute_data_LDA_Luca
 from LDA import compute_data_LDA
 import testModel
-from testModel import testModel, testLogisticRegression, testLinearSVM
+from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
     computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes, computeParametersForLogisticRegression, \
-        computeParametersForLinearSVM
+        computeParametersForLinearSVM, computeGMMs
 from spotDataDependency import DataIndependecyAfterPCA
 from split import leaveOneOutSplit
 from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, \
@@ -55,7 +55,13 @@ if __name__ == '__main__':
     """Linear SVM"""
     k = 1
     C = 0.1 # altri possibili valori Cvalues = [0.1, 1.0, 10.0]    Kvalues = [1, 10]
-    wHatStar = computeParametersForLinearSVM(DTR, LTR, k, C)
+    #wHatStar = computeParametersForLinearSVM(DTR, LTR, k, C)
+    """Gaussian Mixture Model"""
+    DeltaL = 10e-6
+    finalImpl = "standard"#other possible values ["standard", "diagonal", "tied"]:   
+    finalGmms = 8 #other possible values [1,2,4,8,16]
+    GMM = computeGMMs(DTR, LTR, DeltaL, finalGmms, finalImpl)
+        
     
     """calcolo accuratezza, errore e confusion matrix sui dati di test. Per ora il costo non è considerato"""
     """
@@ -67,9 +73,11 @@ if __name__ == '__main__':
     print("Error rate Tied without PCA: " + str(format(err_Tied * 100, ".2f")) + "%\n")
     acc_LogReg, err_LogReg = testLogisticRegression(w, b, DTE, LTE)
     print("Error rate Logistic Regression without PCA: " + str(format(err_LogReg * 100, ".2f")) + "%\n")
-    """
     acc_LinSVM , err_LinSVM = testLinearSVM(wHatStar, k, DTE,LTE)
     print("Error rate Linear SVM without PCA: " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
+    """
+    acc_GMM, err_GMM = testGMM(GMM, DTE, LTE)
+    print("Error rate GMM without PCA: " + str(format(err_GMM * 100, ".2f")) + "%\n")
     
     """Compare LDA with different algorithms"""
     #compareLDA(DTR, LTR)

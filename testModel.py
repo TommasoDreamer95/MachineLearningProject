@@ -7,7 +7,7 @@ Created on Sat May  1 12:19:02 2021
 
 import numpy , scipy.special, scipy.linalg
 from matrixUtilities import mcol, compute_num_classes
-from classificatori import buildExtendedMatrix
+from classificatori import buildExtendedMatrix, logpdf_GMM
 
 """computing log-density, 
 input : 
@@ -147,4 +147,18 @@ def testLinearSVM(wHatStar, k, DTE,LTE):
     S = numpy.dot(wHatStar.T, DTEHat)
     
     acc, err = computeErrorRate(S, LTE)
+    return acc, err
+
+def testGMM(GMM, DTE, LTE):
+    Sjoint = numpy.zeros( (2, DTE.shape[1]), dtype="float32")
+    SPost =  numpy.zeros( (2, DTE.shape[1]), dtype="float32")
+      
+    """same thing but with log-densities"""   
+    for c in range(0,2):
+        _ , Sjoint[c] = logpdf_GMM(DTE, GMM[c])
+        
+    
+    SPost = Sjoint - scipy.special.logsumexp(Sjoint, 0) #joint log-densities / marginal log-densities
+    
+    acc, err = computeError(SPost, LTE)
     return acc, err

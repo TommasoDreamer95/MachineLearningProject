@@ -4,7 +4,7 @@ Created on Sat May  1 12:46:22 2021
 
 @author: tommy
 """
-import numpy , scipy.special
+import numpy , scipy.special, math
 from matrixUtilities import mcol
 
 """calcola la media mu e la covarianza sigma del modello MVG
@@ -155,3 +155,173 @@ def computeParametersForLinearSVM(DTR, LTR, k, C):
     wHatStar = computeWfromAlpha(optimalAlpha, LTR, Dhat)
     
     return wHatStar
+
+"""from here on GMM"""
+
+def logpdf_GAU_ND(XND, mu, C):
+    M = XND.shape[0]
+    sigma = C
+    _, logdet = numpy.linalg.slogdet(sigma)
+    pref_dens = -1 * M/2 * numpy.log(2 * numpy.pi) - 1/2 * logdet
+    sigma_inverse = numpy.linalg.inv(sigma)
+    list_values = []
+    for i in range(XND.shape[1]):
+        list_values.append( -1/2 * numpy.dot(numpy.dot((XND[:, i:i+1]-mu).T, sigma_inverse), (XND[:, i:i+1] - mu)))
+    
+    log_density = numpy.vstack(list_values)
+    log_density += pref_dens
+    log_density = log_density.reshape(log_density.shape[0])
+
+    return log_density
+
+def logpdf_GMM(X, gmm):
+    N = X.shape[1] #samples
+    D = X.shape[0] #variates
+    M = len(gmm) #models
+    S = numpy.zeros( (M, N), dtype="float64")
+    for g in range (0, len(gmm)):
+        mu = gmm[g][1]
+        C = gmm[g][2]
+        logdensities = logpdf_GAU_ND(X, mu, C)
+        S[g, :] = logdensities
+        S[g, :] += numpy.log(gmm[g][0])
+    logdens = scipy.special.logsumexp(S, axis=0)
+    return S, logdens
+
+
+def constrain_eigenvalues(covNew):
+    psi = 0.01
+    U, s, _ = numpy.linalg.svd(covNew)
+    s[s<psi] = psi
+    covNew = numpy.dot(U, mcol(s)*U.T)
+    return covNew
+
+
+def E_part(previousGMM, X):
+    #E
+    #print(previousGMM[0][2])
+    (S, logdens) = logpdf_GMM(X, previousGMM)
+    
+    ll = logdens.sum()
+    N = X.shape[1] #samples
+    avg_ll = ll / N
+    #print(avg_ll)
+    loggamma = S - logdens
+    gamma = numpy.exp(loggamma)
+    
+    return gamma, avg_ll
+ 
+def M_part(X, previousGMM, DeltaL, finalImpl, gamma):
+    #M
+    nextGMM = []
+    gmmTuple = []
+    N = X.shape[1] #samples
+    
+    Z = numpy.zeros( (len(previousGMM)), dtype="float64" )
+    w = numpy.zeros( (len(previousGMM)), dtype="float64" )
+    mu = numpy.zeros( (len(previousGMM), X.shape[0]), dtype="float64" )
+    C = numpy.zeros( (len(previousGMM), X.shape[0], X.shape[0]), dtype="float64" )
+    
+    for g in range (0, len(previousGMM)):
+        Z[g] = gamma[g].sum()
+        Fg = numpy.zeros((X.shape[0]), dtype="float64")
+        Sg = numpy.zeros((X.shape[0], X.shape[0]), dtype="float64")
+        
+        for i in range (0, X.shape[1]):
+            Fg += (gamma[g][i] * X[:, i])
+            Sg += (gamma[g][i] * numpy.dot(mcol(X[:, i]) , mcol(X[:, i]).T))
+        
+        mu[g] = Fg / Z[g]
+        C[g] = Sg/Z[g] -numpy.dot(mcol(mu[g]), mcol(mu[g]).T)#numpy.dot(mu[g], mu[g].T)
+        if finalImpl == "diagonal":
+            C[g] = C[g] * numpy.eye(C[g].shape[0]) #diagonal update  
+        C[g] = constrain_eigenvalues(C[g])
+    
+    if finalImpl == "tied":
+        Ccopy = C
+    for g in range (0, len(previousGMM)):
+        w[g] = Z[g]/ (Z.sum() ) 
+        if finalImpl == "tied":        
+            newCg = numpy.zeros( (X.shape[0], X.shape[0]), dtype="float64" )
+            for g1 in range (0, len(previousGMM)):
+                newCg += Ccopy[g] * Z[g]
+            C[g] = newCg / N
+        gmmTuple = (w[g], mcol(mu[g]), C[g])
+        #print(gmmTuple[0])
+        nextGMM.append(gmmTuple)
+        
+    return nextGMM
+
+
+def EM_wrapper(X, previousGMM, DeltaL, finalImpl):
+    
+    prev_avg_ll = "primo valore"
+    
+    while(True):
+        (gamma, avg_ll) = E_part(previousGMM, X)
+        #if prev_avg_ll != "primo valore":
+        #    print (abs(avg_ll - prev_avg_ll))
+        if prev_avg_ll != "primo valore" and abs(avg_ll - prev_avg_ll) < DeltaL :
+            return previousGMM   
+        
+        prev_avg_ll = avg_ll
+        
+        previousGMM = M_part(X, previousGMM, DeltaL, finalImpl, gamma)        
+
+def LBG_algorithm(previousGMM):
+    
+    newGMM = []
+    gmmTuple = []
+    alpha = 0.1
+    for g in range (0, len(previousGMM)):
+        wg = previousGMM[g][0]
+        mug = previousGMM[g][1]
+        Sigma_g = previousGMM[g][2]
+        Sigma_g = constrain_eigenvalues(Sigma_g)
+        
+        U, s, Vh = numpy.linalg.svd(Sigma_g)
+        d = U[:, 0:1] * s[0]**0.5 * alpha
+        
+        newWg = wg / 2
+        #1st
+        newMug =mcol( mug) + d
+        gmmTuple = (newWg, newMug, Sigma_g)
+        newGMM.append(gmmTuple)
+        
+        #2nd
+        newMug = mcol(mug) - d
+        gmmTuple = (newWg, newMug, Sigma_g)
+        newGMM.append(gmmTuple)
+    
+    return newGMM
+
+
+def LBG(DTR, DeltaL, mu, C, finalImpl, finalGmms):
+    
+    
+    lbgIterations = math.log(finalGmms, 2)
+    GMM = [(1.0, mu, C)]
+    for i in range (0, int(lbgIterations)):
+        EM = EM_wrapper( DTR, GMM, DeltaL, finalImpl)
+        GMM = LBG_algorithm(EM)
+        
+    EM_final = EM_wrapper(DTR, GMM, DeltaL, finalImpl)
+    return EM_final
+
+
+def computeGMMs(DTR, LTR, DeltaL, finalGmms, finalImpl):
+    
+    mu = numpy.zeros( (3, DTR.shape[0]))
+    SigmaC = numpy.zeros( (3, DTR.shape[0], DTR.shape[0] ) )
+    GMMs = []
+    for c in range(0,2):
+        Dc = DTR[:, LTR==c] 
+        mu[c] = Dc.mean(1)  
+        DC = Dc - mcol(mu[c])  #matrice centrata, in cui ad ogni colonna sottraggo la media
+        SigmaC[c] = numpy.dot(DC, DC.T) / float(DC.shape[1]) # C = 1/N * Dc * Dc Trasposta
+        
+        GMM = LBG(Dc, DeltaL, mcol(mu[c]), SigmaC[c], finalImpl, finalGmms)
+        GMMs.append(GMM)
+        
+        
+    return GMMs
