@@ -82,6 +82,8 @@ def create_sigma_diagonal(sigma):
     return numpy.array(list_sigma)
 
 
+"""From here on: Logistic Regression"""
+
 """
 called many times during logistic regression, in order to get the minimizer parameters
 """

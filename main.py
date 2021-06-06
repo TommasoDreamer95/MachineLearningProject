@@ -40,7 +40,7 @@ if __name__ == '__main__':
     
     #plot_hist(DTRPCA, LTR);
     
-    #compareAlgorithmsAndDimentionalityReduction(DTR, LTR)
+    compareAlgorithmsAndDimentionalityReduction(DTR, LTR)
     
     """applico il classificatore opportuno"""
     """MVG"""
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     DeltaL = 10e-6
     finalImpl = "standard"#other possible values ["standard", "diagonal", "tied"]:   
     finalGmms = 8 #other possible values [1,2,4,8,16]
-    GMM = computeGMMs(DTR, LTR, DeltaL, finalGmms, finalImpl)
+    #GMM = computeGMMs(DTR, LTR, DeltaL, finalGmms, finalImpl)
         
     
     """calcolo accuratezza, errore e confusion matrix sui dati di test. Per ora il costo non è considerato"""
@@ -75,10 +75,9 @@ if __name__ == '__main__':
     print("Error rate Logistic Regression without PCA: " + str(format(err_LogReg * 100, ".2f")) + "%\n")
     acc_LinSVM , err_LinSVM = testLinearSVM(wHatStar, k, DTE,LTE)
     print("Error rate Linear SVM without PCA: " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
-    """
     acc_GMM, err_GMM = testGMM(GMM, DTE, LTE)
     print("Error rate GMM without PCA: " + str(format(err_GMM * 100, ".2f")) + "%\n")
-    
+    """
     """Compare LDA with different algorithms"""
     #compareLDA(DTR, LTR)
     #compare_PCA_before_LDA(DTR, LTR)
