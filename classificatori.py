@@ -4,6 +4,7 @@ Created on Sat May  1 12:46:22 2021
 
 @author: tommy
 """
+import scipy.optimize
 import numpy , scipy.special, math
 from matrixUtilities import mcol
 
@@ -327,3 +328,109 @@ def computeGMMs(DTR, LTR, DeltaL, finalGmms, finalImpl):
         
         
     return GMMs
+
+"""
+computation of dual j kernel for SVM
+"""
+def dual_J_kernel(alfa, DTR, LTR, K, kernel):
+    list_k = []
+    for i in range(DTR.shape[1]):
+        list_k.append(K)
+        #list_k.append(1)
+    Dc = numpy.vstack([DTR, list_k])
+    Gc = numpy.dot(Dc.T, Dc)
+    # compute matrix Z of products zi * zj
+    list_zi = []
+    for i in range(len(LTR)):
+        if LTR[i] == 1:
+            zi = 1
+            #zi = -1
+        else:
+            zi = -1
+            #zi = 1
+        list_zi.append(zi)
+    row_z = numpy.vstack(list_zi)
+    Z = numpy.dot(row_z, row_z.T)
+    # compute matrix Hc
+    Hc = Z * kernel
+    vstack_ones = mcol(numpy.ones(len(LTR)))
+    Lt =  1/2 * numpy.dot(numpy.dot(alfa.T, Hc), alfa) - numpy.dot(alfa.T, vstack_ones)[0]
+    grad_alfa = numpy.dot(Hc, alfa) -1
+    return Lt, grad_alfa
+    #return Lt
+
+""" 
+computation of polynomial kernel for SVM
+"""
+def compute_polynomial_kernel(x1, x2, c, d, psi):
+    poly_kern = (numpy.dot(x1.T, x2) + c)**d + psi
+    return poly_kern
+
+def compute_RBF_kernel(m1, m2, gamma, psi):
+    list_vertical_rows = []
+    for i in range(m1.shape[1]):
+        xi = m1[:, i]
+        list_row_kernel = []
+        for j in range(m2.shape[1]):
+            xj = m2[:, j]
+            kij = numpy.exp(-1 * gamma * numpy.linalg.norm(xi - xj)**2) + psi
+            list_row_kernel.append(kij)
+        row_kernel = numpy.hstack(list_row_kernel)
+        list_vertical_rows.append(row_kernel)
+    return numpy.vstack(list_vertical_rows)
+
+def compute_matrix_Z_kernel_SVM(DTR, LTR):
+    Z = []
+    for i in range(DTR.shape[1]):
+        if LTR[i] == 1:
+            zi = 1
+        else:
+            zi = -1
+        Z.append(zi)
+    Z = numpy.vstack(Z)
+    return Z
+
+def compute_bounds_list_kernel_SVM(DTR, C):
+    bounds_list = []
+    #for i in range(DTR.shape[0] + 1 ):
+    for i in range(DTR.shape[1]):
+        bounds_list.append((0, C))
+    return bounds_list
+    
+
+def computeParameterForKernelPolynomialSVM(DTR, LTR, K, C, d, c):
+    psi = K ** 2
+    bounds_list = compute_bounds_list_kernel_SVM(DTR, C)
+    # --- compute dual J
+    x0_dual = mcol(numpy.zeros(DTR.shape[1]))
+    kc_polynomial = compute_polynomial_kernel(DTR, DTR, c, d, psi)
+    alfa_polynomial, _, _ = scipy.optimize.fmin_l_bfgs_b(dual_J_kernel, x0_dual, args=(DTR, LTR, K, kc_polynomial), factr=1.0, bounds=bounds_list)
+    return alfa_polynomial
+
+def computeParameterForKernelRBFSVM(DTR, LTR, K, C, gamma):
+    psi = K ** 2
+    bounds_list = compute_bounds_list_kernel_SVM(DTR, C)
+    x0_dual = mcol(numpy.zeros(DTR.shape[1]))
+    kernel_RBF = compute_RBF_kernel(DTR, DTR, gamma, psi)
+    alfa_RBF, _, _ = scipy.optimize.fmin_l_bfgs_b(dual_J_kernel, x0_dual, args=(DTR, LTR, K, kernel_RBF), factr=1.0, bounds=bounds_list)
+    return alfa_RBF
+
+def compute_polynomial_kernel(x1, x2, c, d, K_RBF):
+    psi = K_RBF ** 2
+    poly_kern = (numpy.dot(x1.T, x2) + c)**d + psi
+    
+    return poly_kern
+
+def compute_RBF_kernel(m1, m2, gamma, K):
+    psi = K ** 2
+    list_vertical_rows = []
+    for i in range(m1.shape[1]):
+        xi = m1[:, i]
+        list_row_kernel = []
+        for j in range(m2.shape[1]):
+            xj = m2[:, j]
+            kij = numpy.exp(-1 * gamma * numpy.linalg.norm(xi - xj)**2) + psi
+            list_row_kernel.append(kij)
+        row_kernel = numpy.hstack(list_row_kernel)
+        list_vertical_rows.append(row_kernel)
+    return numpy.vstack(list_vertical_rows)

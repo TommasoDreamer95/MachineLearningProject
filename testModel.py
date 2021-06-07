@@ -163,3 +163,8 @@ def testGMM(GMM, DTE, LTE):
     
     acc, err = computeError(SPost, LTE)
     return acc, err
+
+def testKernelSVM(alfa, Z, kernel_DTR_DTE, LTE):
+     S = numpy.dot(alfa, Z * kernel_DTR_DTE)
+     acc, err = computeErrorRate(S, LTE)
+     return acc, err, S

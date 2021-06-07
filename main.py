@@ -7,10 +7,11 @@ from PCA import PCA
 #from LDA import LDA, compute_data_LDA_Luca
 from LDA import compute_data_LDA
 import testModel
-from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM
+from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM, testKernelSVM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
     computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes, computeParametersForLogisticRegression, \
-        computeParametersForLinearSVM, computeGMMs
+        computeParametersForLinearSVM, computeGMMs, computeParameterForKernelPolynomialSVM, computeParameterForKernelRBFSVM, \
+            compute_matrix_Z_kernel_SVM, compute_polynomial_kernel, compute_RBF_kernel
 from spotDataDependency import DataIndependecyAfterPCA
 from split import leaveOneOutSplit
 from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, \
@@ -29,18 +30,13 @@ if __name__ == '__main__':
     #DTRPCAplusLDA = LDA(DTRPCA, LTR, m)
 
    # D_before_LDA = compute_data_LDA_Luca(DTR,LTR, m)
-    
-    
-    
-    
-    
 
     #DataIndependecyAfterPCA(DTR)
 
     
     #plot_hist(DTRPCA, LTR);
     
-    compareAlgorithmsAndDimentionalityReduction(DTR, LTR)
+    compareAlgorithmsAndDimentionalityReduction(DTR, LTR) 
     
     """applico il classificatore opportuno"""
     """MVG"""
@@ -56,6 +52,23 @@ if __name__ == '__main__':
     k = 1
     C = 0.1 # altri possibili valori Cvalues = [0.1, 1.0, 10.0]    Kvalues = [1, 10]
     #wHatStar = computeParametersForLinearSVM(DTR, LTR, k, C)
+    """kernel SVM"""
+    """polynomial Kernel SVM"""
+    K_poly = 1
+    C_poly = 0.1
+    d_poly = 2
+    c_poly = 0
+    Z_kernel_SVM = compute_matrix_Z_kernel_SVM(DTR, LTR) # matrix Z is common for polynomial kernel and RBF kernel
+    #alfa_polynomial_SVM = computeParameterForKernelPolynomialSVM(DTR, LTR, K_poly, C_poly, d_poly, c_poly)
+    """
+     TODO: for the computation of the scores, compute polynomial kernel for DTR, DTE amd Z matrix 
+     the computation of Z can be done inside the fucntion that computes the scores
+    """
+    """RBF kernel SVM"""
+    K_RBF = 1
+    C_RBF = 0.1
+    gamma_RBF = 1.0
+    alfa_RBF_kernel = computeParameterForKernelRBFSVM(DTR, LTR, K_RBF, C_RBF, gamma_RBF)
     """Gaussian Mixture Model"""
     DeltaL = 10e-6
     finalImpl = "standard"#other possible values ["standard", "diagonal", "tied"]:   
@@ -77,7 +90,14 @@ if __name__ == '__main__':
     print("Error rate Linear SVM without PCA: " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
     acc_GMM, err_GMM = testGMM(GMM, DTE, LTE)
     print("Error rate GMM without PCA: " + str(format(err_GMM * 100, ".2f")) + "%\n")
+    ###-- compute scores for polynomial kernel --###
+    #poly_kernel_DTR_DTE = compute_polynomial_kernel(DTR, DTE, c_poly, d_poly, K_poly)
+    #acc_poly_kernel, err_poly_kernel, scores_poly_kernel = testKernelSVM(alfa_polynomial_SVM, Z_kernel_SVM, poly_kernel_DTR_DTE, LTE)
+    ###-- compute scores for RBF kernel --###
+    RBF_kernel_DTR_DTE = compute_RBF_kernel(DTR, DTE, gamma_RBF, K_RBF)
+    acc_RBF_kernel, err_RBF_kernel, scores_RBF_kernel = testKernelSVM(alfa_RBF_kernel, Z_kernel_SVM, RBF_kernel_DTR_DTE, LTE)
     """
+    
     """Compare LDA with different algorithms"""
     #compareLDA(DTR, LTR)
     #compare_PCA_before_LDA(DTR, LTR)
