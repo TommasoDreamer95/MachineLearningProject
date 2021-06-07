@@ -156,6 +156,7 @@ def testGMM(GMM, DTE, LTE):
     """same thing but with log-densities"""   
     for c in range(0,2):
         _ , Sjoint[c] = logpdf_GMM(DTE, GMM[c])
+        Sjoint[c] = Sjoint[c] + numpy.log(1/3)       # joint log densities
         
     
     SPost = Sjoint - scipy.special.logsumexp(Sjoint, 0) #joint log-densities / marginal log-densities
