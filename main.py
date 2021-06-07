@@ -4,8 +4,6 @@ import numpy , scipy.special, scipy.linalg
 from matrixUtilities import mcol, plot_hist
 import loadData
 from PCA import PCA
-#from LDA import LDA, compute_data_LDA_Luca
-from LDA import compute_data_LDA
 import testModel
 from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM, testKernelSVM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
@@ -15,7 +13,7 @@ from classificatori import computeMeanAndCovarianceForMultiVariate, \
 from spotDataDependency import DataIndependecyAfterPCA
 from split import leaveOneOutSplit
 from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, \
-    compareLDA, compare_PCA_before_LDA, applyAndTestModels, kFold
+    applyAndTestModels, kFold
 
 
     
@@ -98,18 +96,4 @@ if __name__ == '__main__':
     acc_RBF_kernel, err_RBF_kernel, scores_RBF_kernel = testKernelSVM(alfa_RBF_kernel, Z_kernel_SVM, RBF_kernel_DTR_DTE, LTE)
     """
     
-    """Compare LDA with different algorithms"""
-    #compareLDA(DTR, LTR)
-    #compare_PCA_before_LDA(DTR, LTR)
-    
-    """compute error rate in the evaluation set with LDA with m=3 using Naive Bayes classifier"""
-    """
-    m = 9
-    n = 8
-    DTRPCA = PCA(DTR, m)
-    DTRLDA = compute_data_LDA(DTRPCA, LTR, n)
-    DTELDA = compute_data_LDA(DTE, LTE, n)
-    acc_LDA, err_LDA = applyAndTestModels(DTRLDA, LTR, DTELDA, LTE, 2)
-    print("Accuracy with test data with LDA m={}: ".format(str(m)) + str(format(err_LDA * 100, ".2f")) + "%\n")
-    """
     
