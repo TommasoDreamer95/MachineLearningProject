@@ -24,3 +24,12 @@ def PCA(D, resultingDimentions):
     mLeadingEigenvectors = eigenvectorsMatrix[:, 0:resultingDimentions]
     DataProjected = numpy.dot(mLeadingEigenvectors.T, D) #apply projection to matrix of samples
     return DataProjected 
+
+def PCAforDTE(DTR, DTE, resultingDimentions): 
+    D = DTR
+    CovarianceMatrix = covariance(D)
+    eigenvectorsMatrix, eigenvalues, Vh = numpy.linalg.svd(CovarianceMatrix)
+    mLeadingEigenvectors = eigenvectorsMatrix[:, 0:resultingDimentions]
+    DTRProjected = numpy.dot(mLeadingEigenvectors.T, D) #apply projection to matrix of samples
+    DTEProjected = numpy.dot(mLeadingEigenvectors.T, DTE) #apply projection to matrix of samples
+    return DTRProjected, DTEProjected

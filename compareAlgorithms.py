@@ -10,11 +10,11 @@ Created on Mon May  3 21:10:29 2021
 
 from PCA import PCA
 
-from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM
-
+from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM, testKernelSVM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
     computeMeanAndCovarianceForTied, computeMeanAndCovarianceForNaiveBayes, computeParametersForLogisticRegression, \
-        computeParametersForLinearSVM, computeGMMs
+        computeParametersForLinearSVM, computeGMMs, computeParameterForKernelPolynomialSVM, computeParameterForKernelRBFSVM, \
+            compute_matrix_Z_kernel_SVM, compute_polynomial_kernel, compute_RBF_kernel
 from split import leaveOneOutSplit, kFoldSplit
 
 
@@ -51,7 +51,7 @@ def applyAndTestModels(DTR, LTR, DTE, LTE, model, params):
         """Logistic Regression"""    
         l = params[0] #we should try different parameters for l such as [0, 1/1000000, 1/1000, 1]
         w, b = computeParametersForLogisticRegression(DTR, LTR, l)
-        acc, err = testLogisticRegression(w, b, DTE, LTE)
+        acc, err, scores = testLogisticRegression(w, b, DTE, LTE)
         #print(err)
     elif model == 4: 
         """GMM"""    
@@ -59,13 +59,31 @@ def applyAndTestModels(DTR, LTR, DTE, LTE, model, params):
         finalImpl = params[1]   
         finalGmms = params[2]
         GMM = computeGMMs(DTR, LTR, DeltaL, finalGmms, finalImpl)
-        acc, err = testGMM(GMM, DTE, LTE)
+        acc, err, scores = testGMM(GMM, DTE, LTE)
     elif model == 5: 
         """Linear SVM"""    
         k=params[0]
         C = params[1]
         wHatStar = computeParametersForLinearSVM(DTR, LTR, k, C)
-        acc , err = testLinearSVM(wHatStar, k, DTE,LTE)
+        acc , err, scores = testLinearSVM(wHatStar, k, DTE,LTE)
+    elif model == 6:
+        """Polinomial kernel SVM"""
+        K_poly = params[0]
+        C_poly = params[1]
+        d_poly = params[2]
+        c_poly = params[3]
+        Z_kernel_SVM = compute_matrix_Z_kernel_SVM(DTR, LTR) # matrix Z is common for polynomial kernel and RBF kernel
+        alfa_polynomial_SVM = computeParameterForKernelPolynomialSVM(DTR, LTR, K_poly, C_poly, d_poly, c_poly)
+        poly_kernel_DTR_DTE = compute_polynomial_kernel(DTR, DTE, c_poly, d_poly, K_poly)
+        acc_poly_kernel, err_poly_kernel, scores_poly_kernel = testKernelSVM(alfa_polynomial_SVM, Z_kernel_SVM, poly_kernel_DTR_DTE, LTE)
+    elif model == 7:
+        """RBF kernel SVM"""
+        K_RBF = params[0]
+        C_RBF = params[1]
+        gamma_RBF = params[2]
+        alfa_RBF_kernel = computeParameterForKernelRBFSVM(DTR, LTR, K_RBF, C_RBF, gamma_RBF)
+        RBF_kernel_DTR_DTE = compute_RBF_kernel(DTR, DTE, gamma_RBF, K_RBF)
+        acc, err, scores = testKernelSVM(alfa_RBF_kernel, Z_kernel_SVM, RBF_kernel_DTR_DTE, LTE)
     return acc, err
 
 """esegue il leave one out split
@@ -105,11 +123,12 @@ input:
 def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
     
     m = 0
-    for m in range(5, DTR.shape[0]+1):
+    minDimentionsTested = 5
+    for m in range(minDimentionsTested, DTR.shape[0]+1):
         
         DTRPCA = PCA(DTR, m)
         
-        
+        """
         if m == 11:
             acc_MVG,err_MVG = kFold(DTR, LTR, 0)
             print("Error rate MVG NO PCA : " + str(format(err_MVG * 100, ".2f")) + "%\n")
@@ -130,7 +149,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
         else:
             acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
             print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
-      
+        
         for l in [0, 1/1000000, 1/1000, 1]:
             params = []
             params.append(l)
@@ -140,7 +159,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
             else:
                 acc_LogReg, err_LogReg = kFold(DTRPCA, LTR, 3, params)
                 print("Error rate Logistic Regression with PCA (m=" + str(m) + ", l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
-        
+        """
         DeltaL = 10e-6
         for finalImpl in ["standard", "diagonal"]:#, "tied"]:
             for finalGmms in [1,2,4,8,16]:
@@ -154,7 +173,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 else:
                     acc_GMM, err_GMM = kFold(DTRPCA, LTR, 4, params)
                     print("Error rate Gaussian Mixture Model with PCA (m=" + str(m) + ", impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
-        
+        """
         for k in [1, 10]:
             for C in [0.1, 1.0, 10.0]:
                 params = []
@@ -166,4 +185,39 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 else:
                     acc_LinSVM, err_LinSVM = kFold(DTRPCA, LTR, 5, params)
                     print("Error rate Linear SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + "): " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
+        
+        
+        d = 2
+        C = 0.1
+        for k in [0, 1]:
+            for c in [0, 1]:
+                params = []
+                params.append(k)
+                params.append(C)
+                params.append(d)
+                params.append(c)
+                if m == 11:
+                    acc_PoliSVM, err_PoliSVM = kFold(DTR, LTR, 6, params)
+                    print("Error rate Polinomial SVM NO PCA (k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM * 100, ".2f")) + "%\n")
+                else:
+                    acc_PoliSVM, err_PoliSVM = kFold(DTRPCA, LTR, 6, params)
+                    print("Error rate Polinomial SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM * 100, ".2f")) + "%\n")
                 
+                
+        
+        C = 1
+        for gamma in [1, 10]:
+            for k in [0, 1]:
+                params = []
+                params.append(k)
+                params.append(C)
+                params.append(gamma)
+                if m == 11:
+                    acc_PoliRBF, err_PoliRBF = kFold(DTR, LTR, 7, params)
+                    print("Error rate RBF SVM NO PCA (k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
+                else:
+                    acc_PoliRBF, err_PoliRBF = kFold(DTRPCA, LTR, 7, params)
+                    print("Error rate RBF SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
+        
+        """
+        

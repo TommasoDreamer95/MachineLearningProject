@@ -140,14 +140,14 @@ def testLogisticRegression(w, b, DTE, LTE):
                
     acc = correct / LTE.shape[0]
     err = 1 - acc
-    return acc, err
+    return acc, err, s
 
 def testLinearSVM(wHatStar, k, DTE,LTE):
     DTEHat = buildExtendedMatrix(DTE, k)
     S = numpy.dot(wHatStar.T, DTEHat)
     
     acc, err = computeErrorRate(S, LTE)
-    return acc, err
+    return acc, err, S
 
 def testGMM(GMM, DTE, LTE):
     Sjoint = numpy.zeros( (2, DTE.shape[1]), dtype="float32")
@@ -156,13 +156,13 @@ def testGMM(GMM, DTE, LTE):
     """same thing but with log-densities"""   
     for c in range(0,2):
         _ , Sjoint[c] = logpdf_GMM(DTE, GMM[c])
-        Sjoint[c] = Sjoint[c] + numpy.log(1/3)       # joint log densities
+        Sjoint[c] = Sjoint[c] + numpy.log(1/2)       # joint log densities
         
     
     SPost = Sjoint - scipy.special.logsumexp(Sjoint, 0) #joint log-densities / marginal log-densities
     
     acc, err = computeError(SPost, LTE)
-    return acc, err
+    return acc, err, SPost
 
 def testKernelSVM(alfa, Z, kernel_DTR_DTE, LTE):
      S = numpy.dot(alfa, Z * kernel_DTR_DTE)
