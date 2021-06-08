@@ -7,7 +7,7 @@ Created on Mon May  3 21:10:29 2021
 
 
 
-
+import numpy
 from PCA import PCA
 
 from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM, testKernelSVM
@@ -81,6 +81,7 @@ def applyAndTestModels(DTR, LTR, DTE, LTE, model, params):
         K_RBF = params[0]
         C_RBF = params[1]
         gamma_RBF = params[2]
+        Z_kernel_SVM = compute_matrix_Z_kernel_SVM(DTR, LTR)
         alfa_RBF_kernel = computeParameterForKernelRBFSVM(DTR, LTR, K_RBF, C_RBF, gamma_RBF)
         RBF_kernel_DTR_DTE = compute_RBF_kernel(DTR, DTE, gamma_RBF, K_RBF)
         acc, err, scores = testKernelSVM(alfa_RBF_kernel, Z_kernel_SVM, RBF_kernel_DTR_DTE, LTE)
@@ -120,46 +121,48 @@ input:
     1) matrice dati di training (#variates, #samples)
     2) vettore label di training (#samples)
 """
+
+"""returns the previous PCA if already computed, DTR if m == 1 and compute PCA otherwise """
+def compute_PCA_if_needed(DTR, DTRPCA, m):
+    if DTRPCA.shape[0] == m:
+        return DTRPCA
+    elif m == 11:
+        return DTR
+    else:
+        return PCA(DTR, m)
+
+
 def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
     
+    DTRPCA = numpy.zeros((1,1), dtype="float64")
     m = 0
     minDimentionsTested = 5
-    for m in range(minDimentionsTested, DTR.shape[0]+1):
-        
-        DTRPCA = PCA(DTR, m)
-        
-        """
-        if m == 11:
-            acc_MVG,err_MVG = kFold(DTR, LTR, 0)
-            print("Error rate MVG NO PCA : " + str(format(err_MVG * 100, ".2f")) + "%\n")
-        else:
-            acc_MVG,err_MVG = kFold(DTRPCA, LTR, 0)
-            print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+    for m in range(minDimentionsTested, DTR.shape[0]+1):       
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+        #DTRPCA = PCA(DTR, m)
+        acc_MVG,err_MVG = kFold(DTRPCA, LTR, 0)
+        print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
     
-        if m == 11:
-            acc_Naive, err_Naive = kFold(DTR, LTR, 1)
-            print("Error rate Naive Bayes NO PCA : " + str(format(err_Naive * 100, ".2f")) + "%\n")
-        else:        
-            acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
-            print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
+    for m in range(minDimentionsTested, DTR.shape[0]+1):        
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+        acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
+        print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
     
-        if m == 11:
-            acc_Tied, err_Tied = kFold(DTR, LTR, 2)
-            print("Error rate Tied NO PCA : " + str(format(err_Tied * 100, ".2f")) + "%\n")
-        else:
-            acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
-            print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
-        
+    for m in range(minDimentionsTested, DTR.shape[0]+1):        
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+        acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
+        print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
+    
+    for m in range(minDimentionsTested, DTR.shape[0]+1):        
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
         for l in [0, 1/1000000, 1/1000, 1]:
             params = []
             params.append(l)
-            if m == 11:
-                acc_LogReg, err_LogReg = kFold(DTR, LTR, 3, params)
-                print("Error rate Logistic Regression NO PCA (l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
-            else:
-                acc_LogReg, err_LogReg = kFold(DTRPCA, LTR, 3, params)
-                print("Error rate Logistic Regression with PCA (m=" + str(m) + ", l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
-        """
+            acc_LogReg, err_LogReg = kFold(DTRPCA, LTR, 3, params)
+            print("Error rate Logistic Regression with PCA (m=" + str(m) + ", l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
+    
+    for m in range(minDimentionsTested, DTR.shape[0]+1):        
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
         DeltaL = 10e-6
         for finalImpl in ["standard", "diagonal"]:#, "tied"]:
             for finalGmms in [1,2,4,8,16]:
@@ -167,28 +170,23 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 params.append(DeltaL)
                 params.append(finalImpl)
                 params.append(finalGmms)
-                if m == 11:
-                    acc_GMM, err_GMM = kFold(DTR, LTR, 4, params)
-                    print("Error rate Gaussian Mixture Model NO PCA (impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
-                else:
-                    acc_GMM, err_GMM = kFold(DTRPCA, LTR, 4, params)
-                    print("Error rate Gaussian Mixture Model with PCA (m=" + str(m) + ", impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
-        """
+                acc_GMM, err_GMM = kFold(DTRPCA, LTR, 4, params)
+                print("Error rate Gaussian Mixture Model with PCA (m=" + str(m) + ", impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
+     
+    for m in range(minDimentionsTested, DTR.shape[0]+1):        
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)       
         for k in [1, 10]:
             for C in [0.1, 1.0, 10.0]:
                 params = []
                 params.append(k)
                 params.append(C)
-                if m == 11:
-                    acc_LinSVM, err_LinSVM = kFold(DTR, LTR, 5, params)
-                    print("Error rate Linear SVM NO PCA (k = " + str(k) + ", C = " + str(C) + "): " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
-                else:
-                    acc_LinSVM, err_LinSVM = kFold(DTRPCA, LTR, 5, params)
-                    print("Error rate Linear SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + "): " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
+                acc_LinSVM, err_LinSVM = kFold(DTRPCA, LTR, 5, params)
+                print("Error rate Linear SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + "): " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
         
-        
+    for m in range(minDimentionsTested, DTR.shape[0]+1):        
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
         d = 2
-        C = 0.1
+        C = 1
         for k in [0, 1]:
             for c in [0, 1]:
                 params = []
@@ -196,15 +194,11 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 params.append(C)
                 params.append(d)
                 params.append(c)
-                if m == 11:
-                    acc_PoliSVM, err_PoliSVM = kFold(DTR, LTR, 6, params)
-                    print("Error rate Polinomial SVM NO PCA (k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM * 100, ".2f")) + "%\n")
-                else:
-                    acc_PoliSVM, err_PoliSVM = kFold(DTRPCA, LTR, 6, params)
-                    print("Error rate Polinomial SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM * 100, ".2f")) + "%\n")
+                acc_PoliSVM, err_PoliSVM = kFold(DTRPCA, LTR, 6, params)
+                print("Error rate Polinomial SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM * 100, ".2f")) + "%\n")
                 
-                
-        
+    for m in range(minDimentionsTested, DTR.shape[0]+1):
+        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
         C = 1
         for gamma in [1, 10]:
             for k in [0, 1]:
@@ -212,12 +206,8 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 params.append(k)
                 params.append(C)
                 params.append(gamma)
-                if m == 11:
-                    acc_PoliRBF, err_PoliRBF = kFold(DTR, LTR, 7, params)
-                    print("Error rate RBF SVM NO PCA (k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
-                else:
-                    acc_PoliRBF, err_PoliRBF = kFold(DTRPCA, LTR, 7, params)
-                    print("Error rate RBF SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
+                acc_PoliRBF, err_PoliRBF = kFold(DTRPCA, LTR, 7, params)
+                print("Error rate RBF SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
         
-        """
+        
         
