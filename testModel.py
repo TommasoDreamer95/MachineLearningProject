@@ -103,8 +103,9 @@ def testModel(mu, sigma, DTE, LTE):
     SPost = Sjoint - scipy.special.logsumexp(Sjoint, 0) #joint log-densities / marginal log-densities
     
     acc, err = computeError(SPost, LTE)
-    CM = computeConfusionMatrix(SPost, LTE)
-    return acc, err, CM
+    ## added for min DCF:
+    loglikelihood_ratio = S[1] - S[0]
+    return acc, err, loglikelihood_ratio
 
 def computeErrorRate(S, LTE):
     n = LTE.shape[0]
@@ -174,9 +175,11 @@ def testGMM(GMM, DTE, LTE):
         
     
     SPost = Sjoint - scipy.special.logsumexp(Sjoint, 0) #joint log-densities / marginal log-densities
+    ## compute loglikelihood_ratio for min_DCF
+    loglikelihood_ratio = SPost[1] - SPost[0]
     
     acc, err = computeError(SPost, LTE)
-    return acc, err, SPost
+    return acc, err, loglikelihood_ratio
 
 def testKernelSVM(alfa, Z, kernel_DTR_DTE, LTE):
      S = numpy.dot(alfa, Z * kernel_DTR_DTE)
