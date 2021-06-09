@@ -54,3 +54,30 @@ def plot_hist(D, L):
         plt.tight_layout() # Use with non-default font size to keep axis label inside the figure
         #plt.savefig('../hist_%d.pdf' % dIdx)
     plt.show()
+    
+def plot_scatter(D, L):
+    D0 = D[:, L==0]
+    D1 = D[:, L==1]  
+    
+    hFea = {
+        0: 'fixed acidity',
+        1: 'volatile acidity',
+        2: 'citric acid',
+        3: 'residual sugar',
+        4: 'chlorides',
+        5: 'free sulfur dioxide',
+        6: 'total sulfur dioxide',
+        7: 'density',
+        8: 'pH',
+        9: 'sulphates',
+        10: 'alcohol'
+        }
+    for idx in range(0, D.shape[0]):
+        for i in range(0, D.shape[0]):
+            if i != idx:
+                plt.figure()
+                plt.xlabel(hFea[idx]);
+                plt.ylabel(hFea[i])
+                plt.scatter(D0[idx], D0[i])
+                plt.scatter(D1[idx], D1[i])
+                plt.show();

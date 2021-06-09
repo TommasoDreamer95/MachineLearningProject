@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy , scipy.special, scipy.linalg
-from matrixUtilities import mcol, plot_hist
+from matrixUtilities import mcol, plot_hist, plot_scatter
 import loadData
 from PCA import PCA, PCAforDTE
 import testModel
@@ -21,20 +21,17 @@ if __name__ == '__main__':
     (DTE, LTE) , (DTR, LTR) = loadData.load_data()
     """plot histograms"""
     #plot_hist(DTR, LTR);
-
+    plot_scatter(DTR, LTR)
     """applico PCA e LDA"""
     #m=4
     #DTRPCA = PCA(DTR, m)
-    #DTRPCAplusLDA = LDA(DTRPCA, LTR, m)
-
-   # D_before_LDA = compute_data_LDA_Luca(DTR,LTR, m)
 
     #DataIndependecyAfterPCA(DTR)
 
     
     #plot_hist(DTRPCA, LTR);
     
-    compareAlgorithmsAndDimentionalityReduction(DTR, LTR) 
+    #compareAlgorithmsAndDimentionalityReduction(DTR, LTR) 
     
     """applico il classificatore opportuno"""
     """MVG"""
