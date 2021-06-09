@@ -218,126 +218,131 @@ def compute_PCA_if_needed(DTR, DTRPCA, m):
 
 def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
     
-    """con m = 11 DTRPCA = DTR"""
-    DTRPCA = numpy.zeros((1,1), dtype="float64")
-    m = 0
-    minDimentionsTested = 5
-    
+    original_stdout = sys.stdout # Save a reference to the original standard output
 
-    print("\n")
-    for m in range(minDimentionsTested, DTR.shape[0]+1):       
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
-        #DTRPCA = PCA(DTR, m)
-        acc_MVG,err_MVG, min_DCF_MVG_priors = kFold(DTRPCA, LTR, 0)
-        print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
-        for list_min_DCF in min_DCF_MVG_priors:
-            p1 = list_min_DCF[0]
-            min_DCF_MVG = list_min_DCF[1]
-            print("min DCF(prior p1={}) MVG with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_MVG, ".3f") )))
-
-    
-    print("\n")
-    for m in range(minDimentionsTested, DTR.shape[0]+1):        
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
-        acc_Naive, err_Naive, min_DCF_Naive_priors = kFold(DTRPCA, LTR, 1)
-        print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
-        for list_min_DCF in min_DCF_Naive_priors:
-            p1 = list_min_DCF[0]
-            min_DCF_Naive = list_min_DCF[1]
-            print("min DCF(prior p1={}) Naive with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Naive, ".3f") )))
-
-    print("\n")
-    for m in range(minDimentionsTested, DTR.shape[0]+1):        
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
-        acc_Tied, err_Tied, min_DCF_tied_priors = kFold(DTRPCA, LTR, 2)
-        print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
-        for list_min_DCF in min_DCF_tied_priors:
-            p1 = list_min_DCF[0]
-            min_DCF_Tied = list_min_DCF[1]
-            print("min DCF(prior p1={}) Tied with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Tied, ".3f") )))
-    
-    print("\n")
-    for m in range(minDimentionsTested, DTR.shape[0]+1):        
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
-        for l in [0, 1/1000000, 1/1000, 1]:
-            params = []
-            params.append(l)
-            acc_LogReg, err_LogReg, min_DCF_logistic_priors = kFold(DTRPCA, LTR, 3, params)
-            print("Error rate Logistic Regression with PCA (m=" + str(m) + ", l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
-            for list_min_DCF in min_DCF_logistic_priors:
-                p1 = list_min_DCF[0]
-                min_DCF_logistic = list_min_DCF[1]
-                print("min DCF(prior p1={}) Logistic Regression with PCA (m={}, l={}): {}\n".format(str(p1), str(m), str(l), str(format(min_DCF_logistic, ".3f") )))
-    
-
-    
-    print("\n")
-    for m in range(minDimentionsTested, DTR.shape[0]+1):        
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
-        DeltaL = 10e-6
-        for finalImpl in ["standard", "diagonal"]:#, "tied"]:
-            for finalGmms in [1,2,4,8,16]:
-                params = []
-                params.append(DeltaL)
-                params.append(finalImpl)
-                params.append(finalGmms)
-                acc_GMM, err_GMM, min_DCF_GMM_priors = kFold(DTRPCA, LTR, 4, params)
-                print("Error rate Gaussian Mixture Model with PCA (m=" + str(m) + ", impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
-                for list_min_DCF in min_DCF_GMM_priors:
-                    p1 = list_min_DCF[0]
-                    min_DCF_GMM = list_min_DCF[1]
-                    print("min DCF(prior p1={}) Gaussian Mixture Model with PCA (m={}, impl = {}, GMMs = {} ): {}\n".format(str(p1), str(m), finalImpl, str(finalGmms), str(format(min_DCF_GMM, ".3f") )))    
-     
+    with open('AlgorithmsOutput.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
         
-
-    print("\n")    
-    for m in range(minDimentionsTested, DTR.shape[0]+1):        
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)       
-        for k in [1, 10]:
-            for C in [0.1, 1.0, 10.0]:
+        """con m = 11 DTRPCA = DTR"""
+        DTRPCA = numpy.zeros((1,1), dtype="float64")
+        m = 0
+        minDimentionsTested = 5
+        
+    
+        print("\n")
+        for m in range(minDimentionsTested, DTR.shape[0]+1):       
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+            #DTRPCA = PCA(DTR, m)
+            acc_MVG,err_MVG, min_DCF_MVG_priors = kFold(DTRPCA, LTR, 0)
+            print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+            for list_min_DCF in min_DCF_MVG_priors:
+                p1 = list_min_DCF[0]
+                min_DCF_MVG = list_min_DCF[1]
+                print("min DCF(prior p1={}) MVG with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_MVG, ".3f") )))
+    
+        
+        print("\n")
+        for m in range(minDimentionsTested, DTR.shape[0]+1):        
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+            acc_Naive, err_Naive, min_DCF_Naive_priors = kFold(DTRPCA, LTR, 1)
+            print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
+            for list_min_DCF in min_DCF_Naive_priors:
+                p1 = list_min_DCF[0]
+                min_DCF_Naive = list_min_DCF[1]
+                print("min DCF(prior p1={}) Naive with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Naive, ".3f") )))
+    
+        print("\n")
+        for m in range(minDimentionsTested, DTR.shape[0]+1):        
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+            acc_Tied, err_Tied, min_DCF_tied_priors = kFold(DTRPCA, LTR, 2)
+            print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
+            for list_min_DCF in min_DCF_tied_priors:
+                p1 = list_min_DCF[0]
+                min_DCF_Tied = list_min_DCF[1]
+                print("min DCF(prior p1={}) Tied with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Tied, ".3f") )))
+        
+        print("\n")
+        for m in range(minDimentionsTested, DTR.shape[0]+1):        
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
+            for l in [0, 1/1000000, 1/1000, 1]:
                 params = []
-                params.append(k)
-                params.append(C)
-                acc_LinSVM, err_LinSVM, min_DCF_LinSVM_priors = kFold(DTRPCA, LTR, 5, params)
-                print("Error rate Linear SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + "): " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
-                for list_min_DCF in min_DCF_LinSVM_priors:
+                params.append(l)
+                acc_LogReg, err_LogReg, min_DCF_logistic_priors = kFold(DTRPCA, LTR, 3, params)
+                print("Error rate Logistic Regression with PCA (m=" + str(m) + ", l = " + str(l) + "): " + str(format(err_LogReg * 100, ".2f")) + "%\n")
+                for list_min_DCF in min_DCF_logistic_priors:
                     p1 = list_min_DCF[0]
-                    min_DCF_LinSVM= list_min_DCF[1]
-                    print("min DCF(prior p1={}) Linear SVM with PCA (m={}, k = {}, C = {} ): {}\n".format(str(p1), str(m), str(k), str(C) , str(format(min_DCF_LinSVM, ".3f") )))    
-                
-    print("\n")    
-    for m in range(minDimentionsTested, DTR.shape[0]+1):
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
-        C = 1
-        for gamma in [1, 10]:
+                    min_DCF_logistic = list_min_DCF[1]
+                    print("min DCF(prior p1={}) Logistic Regression with PCA (m={}, l={}): {}\n".format(str(p1), str(m), str(l), str(format(min_DCF_logistic, ".3f") )))
+        
+    
+        
+        print("\n")
+        for m in range(minDimentionsTested, DTR.shape[0]+1):        
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
+            DeltaL = 10e-6
+            for finalImpl in ["standard", "diagonal"]:#, "tied"]:
+                for finalGmms in [1,2,4,8,16]:
+                    params = []
+                    params.append(DeltaL)
+                    params.append(finalImpl)
+                    params.append(finalGmms)
+                    acc_GMM, err_GMM, min_DCF_GMM_priors = kFold(DTRPCA, LTR, 4, params)
+                    print("Error rate Gaussian Mixture Model with PCA (m=" + str(m) + ", impl = " + finalImpl + ", GMMs = " + str(finalGmms) + "): " + str(format(err_GMM * 100, ".2f")) + "%\n")
+                    for list_min_DCF in min_DCF_GMM_priors:
+                        p1 = list_min_DCF[0]
+                        min_DCF_GMM = list_min_DCF[1]
+                        print("min DCF(prior p1={}) Gaussian Mixture Model with PCA (m={}, impl = {}, GMMs = {} ): {}\n".format(str(p1), str(m), finalImpl, str(finalGmms), str(format(min_DCF_GMM, ".3f") )))    
+         
+            
+    
+        print("\n")    
+        for m in range(minDimentionsTested, DTR.shape[0]+1):        
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)       
+            for k in [1, 10]:
+                for C in [0.1, 1.0, 10.0]:
+                    params = []
+                    params.append(k)
+                    params.append(C)
+                    acc_LinSVM, err_LinSVM, min_DCF_LinSVM_priors = kFold(DTRPCA, LTR, 5, params)
+                    print("Error rate Linear SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + "): " + str(format(err_LinSVM * 100, ".2f")) + "%\n")
+                    for list_min_DCF in min_DCF_LinSVM_priors:
+                        p1 = list_min_DCF[0]
+                        min_DCF_LinSVM= list_min_DCF[1]
+                        print("min DCF(prior p1={}) Linear SVM with PCA (m={}, k = {}, C = {} ): {}\n".format(str(p1), str(m), str(k), str(C) , str(format(min_DCF_LinSVM, ".3f") )))    
+                    
+        print("\n")    
+        for m in range(minDimentionsTested, DTR.shape[0]+1):
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
+            C = 1
+            for gamma in [1, 10]:
+                for k in [0, 1]:
+                    params = []
+                    params.append(k)
+                    params.append(C)
+                    params.append(gamma)
+                    acc_PoliRBF, err_PoliRBF, min_DCF_PoliRBF_priors = kFold(DTRPCA, LTR, 7, params)
+                    print("Error rate RBF SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
+                    for list_min_DCF in min_DCF_PoliRBF_priors:
+                        p1 = list_min_DCF[0]
+                        min_DCF_PoliRBF = list_min_DCF[1]
+                        print("min DCF(prior p1={})  RBF SVM with PCA (m={}, k = {}, C = {}, gamma = {} ): {}\n".format(str(p1), str(m), str(k), str(C), str(gamma) , str(format(min_DCF_PoliRBF, ".3f") )))    
+           
+        print("\n")    
+        for m in range(minDimentionsTested, DTR.shape[0]+1):        
+            DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
+            d = 2
+            C = 1
             for k in [0, 1]:
-                params = []
-                params.append(k)
-                params.append(C)
-                params.append(gamma)
-                acc_PoliRBF, err_PoliRBF, min_DCF_PoliRBF_priors = kFold(DTRPCA, LTR, 7, params)
-                print("Error rate RBF SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", gamma = " + str(gamma) + "): " + str(format(err_PoliRBF * 100, ".2f")) + "%\n")
-                for list_min_DCF in min_DCF_PoliRBF_priors:
-                    p1 = list_min_DCF[0]
-                    min_DCF_PoliRBF = list_min_DCF[1]
-                    print("min DCF(prior p1={})  RBF SVM with PCA (m={}, k = {}, C = {}, gamma = {} ): {}\n".format(str(p1), str(m), str(k), str(C), str(gamma) , str(format(min_DCF_PoliRBF, ".3f") )))    
-       
-    print("\n")    
-    for m in range(minDimentionsTested, DTR.shape[0]+1):        
-        DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
-        d = 2
-        C = 1
-        for k in [0, 1]:
-            for c in [0, 1]:
-                params = []
-                params.append(k)
-                params.append(C)
-                params.append(d)
-                params.append(c)
-                acc_PoliSVM2, err_PoliSVM2, min_DCF_PoliSVM2_priors = kFold(DTRPCA, LTR, 8, params)
-                print("Error rate Polinomial SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM2 * 100, ".2f")) + "%\n")    
-                for list_min_DCF in min_DCF_PoliSVM2_priors:
-                    p1 = list_min_DCF[0]
-                    min_DCF_PoliSVM2 = list_min_DCF[1]
-                    print("min DCF(prior p1={})  Polinomial SVM with PCA (m={}, k = {}, C = {}, c = {}, d = {} ): {}\n".format(str(p1), str(m), str(k), str(C), str(c), str(d), str(format(min_DCF_PoliSVM2, ".3f") )))    
+                for c in [0, 1]:
+                    params = []
+                    params.append(k)
+                    params.append(C)
+                    params.append(d)
+                    params.append(c)
+                    acc_PoliSVM2, err_PoliSVM2, min_DCF_PoliSVM2_priors = kFold(DTRPCA, LTR, 8, params)
+                    print("Error rate Polinomial SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM2 * 100, ".2f")) + "%\n")    
+                    for list_min_DCF in min_DCF_PoliSVM2_priors:
+                        p1 = list_min_DCF[0]
+                        min_DCF_PoliSVM2 = list_min_DCF[1]
+                        print("min DCF(prior p1={})  Polinomial SVM with PCA (m={}, k = {}, C = {}, c = {}, d = {} ): {}\n".format(str(p1), str(m), str(k), str(C), str(c), str(d), str(format(min_DCF_PoliSVM2, ".3f") )))    
 

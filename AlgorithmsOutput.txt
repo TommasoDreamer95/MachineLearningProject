@@ -1,0 +1,288 @@
+
+
+Error rate MVG with PCA (m=5): 21.37%
+
+min DCF(prior p1=0.5) MVG with PCA (m=5): 0.502
+
+min DCF(prior p1=0.1) MVG with PCA (m=5): 0.856
+
+min DCF(prior p1=0.9) MVG with PCA (m=5): 0.998
+
+Error rate MVG with PCA (m=6): 21.81%
+
+min DCF(prior p1=0.5) MVG with PCA (m=6): 0.503
+
+min DCF(prior p1=0.1) MVG with PCA (m=6): 0.844
+
+min DCF(prior p1=0.9) MVG with PCA (m=6): 0.997
+
+Error rate MVG with PCA (m=7): 21.32%
+
+min DCF(prior p1=0.5) MVG with PCA (m=7): 0.458
+
+min DCF(prior p1=0.1) MVG with PCA (m=7): 0.895
+
+min DCF(prior p1=0.9) MVG with PCA (m=7): 0.918
+
+Error rate MVG with PCA (m=8): 20.17%
+
+min DCF(prior p1=0.5) MVG with PCA (m=8): 0.445
+
+min DCF(prior p1=0.1) MVG with PCA (m=8): 0.902
+
+min DCF(prior p1=0.9) MVG with PCA (m=8): 0.913
+
+Error rate MVG with PCA (m=9): 20.07%
+
+min DCF(prior p1=0.5) MVG with PCA (m=9): 0.450
+
+min DCF(prior p1=0.1) MVG with PCA (m=9): 0.889
+
+min DCF(prior p1=0.9) MVG with PCA (m=9): 0.955
+
+Error rate MVG with PCA (m=10): 23.06%
+
+min DCF(prior p1=0.5) MVG with PCA (m=10): 0.495
+
+min DCF(prior p1=0.1) MVG with PCA (m=10): 0.859
+
+min DCF(prior p1=0.9) MVG with PCA (m=10): 0.995
+
+No PCA
+Error rate MVG with PCA (m=11): 23.27%
+
+min DCF(prior p1=0.5) MVG with PCA (m=11): 0.493
+
+min DCF(prior p1=0.1) MVG with PCA (m=11): 0.844
+
+min DCF(prior p1=0.9) MVG with PCA (m=11): 0.995
+
+
+
+Error rate Naive Bayes with PCA (m=5): 21.10%
+
+min DCF(prior p1=0.5) Naive with PCA (m=5): 0.449
+
+min DCF(prior p1=0.1) Naive with PCA (m=5): 0.892
+
+min DCF(prior p1=0.9) Naive with PCA (m=5): 0.997
+
+Error rate Naive Bayes with PCA (m=6): 20.07%
+
+min DCF(prior p1=0.5) Naive with PCA (m=6): 0.442
+
+min DCF(prior p1=0.1) Naive with PCA (m=6): 0.879
+
+min DCF(prior p1=0.9) Naive with PCA (m=6): 0.993
+
+Error rate Naive Bayes with PCA (m=7): 19.20%
+
+min DCF(prior p1=0.5) Naive with PCA (m=7): 0.414
+
+min DCF(prior p1=0.1) Naive with PCA (m=7): 0.907
+
+min DCF(prior p1=0.9) Naive with PCA (m=7): 0.992
+
+Error rate Naive Bayes with PCA (m=8): 19.68%
+
+min DCF(prior p1=0.5) Naive with PCA (m=8): 0.423
+
+min DCF(prior p1=0.1) Naive with PCA (m=8): 0.896
+
+min DCF(prior p1=0.9) Naive with PCA (m=8): 0.995
+
+Error rate Naive Bayes with PCA (m=9): 20.61%
+
+min DCF(prior p1=0.5) Naive with PCA (m=9): 0.432
+
+min DCF(prior p1=0.1) Naive with PCA (m=9): 0.914
+
+min DCF(prior p1=0.9) Naive with PCA (m=9): 0.971
+
+Error rate Naive Bayes with PCA (m=10): 21.64%
+
+min DCF(prior p1=0.5) Naive with PCA (m=10): 0.443
+
+min DCF(prior p1=0.1) Naive with PCA (m=10): 0.896
+
+min DCF(prior p1=0.9) Naive with PCA (m=10): 0.993
+
+No PCA
+Error rate Naive Bayes with PCA (m=11): 25.61%
+
+min DCF(prior p1=0.5) Naive with PCA (m=11): 0.497
+
+min DCF(prior p1=0.1) Naive with PCA (m=11): 0.860
+
+min DCF(prior p1=0.9) Naive with PCA (m=11): 0.995
+
+
+
+Error rate Tied with PCA (m=5): 21.91%
+
+min DCF(prior p1=0.5) Tied with PCA (m=5): 0.466
+
+min DCF(prior p1=0.1) Tied with PCA (m=5): 0.892
+
+min DCF(prior p1=0.9) Tied with PCA (m=5): 0.989
+
+Error rate Tied with PCA (m=6): 20.01%
+
+min DCF(prior p1=0.5) Tied with PCA (m=6): 0.424
+
+min DCF(prior p1=0.1) Tied with PCA (m=6): 0.875
+
+min DCF(prior p1=0.9) Tied with PCA (m=6): 0.896
+
+Error rate Tied with PCA (m=7): 18.76%
+
+min DCF(prior p1=0.5) Tied with PCA (m=7): 0.405
+
+min DCF(prior p1=0.1) Tied with PCA (m=7): 0.853
+
+min DCF(prior p1=0.9) Tied with PCA (m=7): 0.902
+
+Error rate Tied with PCA (m=8): 19.20%
+
+min DCF(prior p1=0.5) Tied with PCA (m=8): 0.406
+
+min DCF(prior p1=0.1) Tied with PCA (m=8): 0.843
+
+min DCF(prior p1=0.9) Tied with PCA (m=8): 0.902
+
+Error rate Tied with PCA (m=9): 19.36%
+
+min DCF(prior p1=0.5) Tied with PCA (m=9): 0.400
+
+min DCF(prior p1=0.1) Tied with PCA (m=9): 0.862
+
+min DCF(prior p1=0.9) Tied with PCA (m=9): 0.799
+
+Error rate Tied with PCA (m=10): 19.41%
+
+min DCF(prior p1=0.5) Tied with PCA (m=10): 0.400
+
+min DCF(prior p1=0.1) Tied with PCA (m=10): 0.858
+
+min DCF(prior p1=0.9) Tied with PCA (m=10): 0.811
+
+No PCA
+Error rate Tied with PCA (m=11): 20.12%
+
+min DCF(prior p1=0.5) Tied with PCA (m=11): 0.449
+
+min DCF(prior p1=0.1) Tied with PCA (m=11): 0.874
+
+min DCF(prior p1=0.9) Tied with PCA (m=11): 0.912
+
+
+
+Error rate Logistic Regression with PCA (m=5, l = 0): 20.39%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=0): 0.479
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=0): 0.892
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=0): 0.995
+
+Error rate Logistic Regression with PCA (m=5, l = 1e-06): 20.39%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=1e-06): 0.477
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=1e-06): 0.892
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=1e-06): 0.995
+
+Error rate Logistic Regression with PCA (m=5, l = 0.001): 20.39%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=0.001): 0.477
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=0.001): 0.892
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=0.001): 0.995
+
+Error rate Logistic Regression with PCA (m=5, l = 1): 40.78%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=1): 0.676
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=1): 1.000
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=1): 0.999
+
+Error rate Logistic Regression with PCA (m=6, l = 0): 20.88%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=0): 0.440
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=0): 0.887
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=0): 0.905
+
+Error rate Logistic Regression with PCA (m=6, l = 1e-06): 20.88%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=1e-06): 0.440
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=1e-06): 0.887
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=1e-06): 0.905
+
+Error rate Logistic Regression with PCA (m=6, l = 0.001): 20.77%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=0.001): 0.431
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=0.001): 0.894
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=0.001): 0.921
+
+Error rate Logistic Regression with PCA (m=6, l = 1): 40.78%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=1): 0.678
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=1): 1.000
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=1): 0.999
+
+Error rate Logistic Regression with PCA (m=7, l = 0): 19.41%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=0): 0.408
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=0): 0.845
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=0): 0.835
+
+Error rate Logistic Regression with PCA (m=7, l = 1e-06): 19.41%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=1e-06): 0.408
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=1e-06): 0.845
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=1e-06): 0.835
+
+Error rate Logistic Regression with PCA (m=7, l = 0.001): 19.90%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=0.001): 0.405
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=0.001): 0.856
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=0.001): 0.887
+
+Error rate Logistic Regression with PCA (m=7, l = 1): 40.78%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=1): 0.677
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=1): 1.000
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=1): 0.999
+
+Error rate Logistic Regression with PCA (m=8, l = 0): 19.41%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=8, l=0): 0.401
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=8, l=0): 0.869
+
+min DCF(prior p1=0.9) Logistic Regression with PCA (m=8, l=0): 0.835
+
+Error rate Logistic Regression with PCA (m=8, l = 1e-06): 19.47%
+
+min DCF(prior p1=0.5) Logistic Regression with PCA (m=8, l=1e-06): 0.401
+
+min DCF(prior p1=0.1) Logistic Regression with PCA (m=8, l=1e-06): 0.869
