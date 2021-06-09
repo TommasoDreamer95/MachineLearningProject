@@ -7,7 +7,7 @@ Created on Sat May  1 12:19:02 2021
 
 import numpy , scipy.special, scipy.linalg
 from matrixUtilities import mcol, compute_num_classes
-from classificatori import buildExtendedMatrix, logpdf_GMM
+from classificatori import buildExtendedMatrix, logpdf_GMM, polynomialKernel
 
 """computing log-density, 
 input : 
@@ -146,6 +146,20 @@ def testLinearSVM(wHatStar, k, DTE,LTE):
     DTEHat = buildExtendedMatrix(DTE, k)
     S = numpy.dot(wHatStar.T, DTEHat)
     
+    acc, err = computeErrorRate(S, LTE)
+    return acc, err, S
+
+def computeScoreNonLinearPolynomial(alphaStar, LTR, DTR, DTE, c, d, k):
+    summation = 0
+    for i in range(0, DTR.shape[1]):
+        zi = LTR[i]
+        if zi == 0:
+            zi = -1
+        summation = summation + alphaStar[i] * zi * polynomialKernel(DTR[:, i], DTE, c, d, k)
+    return summation
+
+def testPolinomialSVM(optimalAlpha, LTR, DTR, DTE, LTE, c, d, k):
+    S = computeScoreNonLinearPolynomial(optimalAlpha, LTR, DTR, DTE, c, d, k)
     acc, err = computeErrorRate(S, LTE)
     return acc, err, S
 

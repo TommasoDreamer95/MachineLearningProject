@@ -159,6 +159,29 @@ def computeParametersForLinearSVM(DTR, LTR, k, C):
     
     return wHatStar
 
+"""Polinomial SVM (versone 2)"""
+def polynomialKernel(D1, D2, c, d, k):
+    firstTerm = numpy.dot(D1.T, D2)
+    P = (firstTerm + c) ** d
+    xi = k ** 2
+    return P + xi
+
+
+def computeHhatNonLinearPolynomial(DTR, LTR, c, d, k):
+    z = numpy.equal.outer(LTR, LTR)
+    z = z * 2 -1
+    Hhat = z * polynomialKernel(DTR, DTR, c, d, k)
+    return Hhat
+
+
+def computeParametersForPolinomialSVM(DTR, LTR, k, C, d, c):
+    Hhat = computeHhatNonLinearPolynomial(DTR, LTR, c, d, k)
+    
+    alpha = numpy.zeros((DTR.shape[1]), dtype="float64")
+    
+    (optimalAlpha, dualSolution) = findDualSolutionByMinimization(computeNegativeObj, alpha, Hhat, C, DTR)    
+    return optimalAlpha
+
 """from here on GMM"""
 
 def logpdf_GAU_ND(XND, mu, C):
