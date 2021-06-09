@@ -228,7 +228,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
         m = 0
         minDimentionsTested = 5
         
-    
+        """
         print("\n")
         for m in range(minDimentionsTested, DTR.shape[0]+1):       
             DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
@@ -240,7 +240,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 min_DCF_MVG = list_min_DCF[1]
                 print("min DCF(prior p1={}) MVG with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_MVG, ".3f") )))
     
-        
+        """
         print("\n")
         for m in range(minDimentionsTested, DTR.shape[0]+1):        
             DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
@@ -250,7 +250,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 p1 = list_min_DCF[0]
                 min_DCF_Naive = list_min_DCF[1]
                 print("min DCF(prior p1={}) Naive with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Naive, ".3f") )))
-    
+        """
         print("\n")
         for m in range(minDimentionsTested, DTR.shape[0]+1):        
             DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
@@ -326,7 +326,7 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                         p1 = list_min_DCF[0]
                         min_DCF_PoliRBF = list_min_DCF[1]
                         print("min DCF(prior p1={})  RBF SVM with PCA (m={}, k = {}, C = {}, gamma = {} ): {}\n".format(str(p1), str(m), str(k), str(C), str(gamma) , str(format(min_DCF_PoliRBF, ".3f") )))    
-           
+        
         print("\n")    
         for m in range(minDimentionsTested, DTR.shape[0]+1):        
             DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
@@ -345,4 +345,5 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                         p1 = list_min_DCF[0]
                         min_DCF_PoliSVM2 = list_min_DCF[1]
                         print("min DCF(prior p1={})  Polinomial SVM with PCA (m={}, k = {}, C = {}, c = {}, d = {} ): {}\n".format(str(p1), str(m), str(k), str(C), str(c), str(d), str(format(min_DCF_PoliSVM2, ".3f") )))    
-
+        """
+    sys.stdout = original_stdout
