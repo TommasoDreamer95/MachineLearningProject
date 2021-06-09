@@ -9,6 +9,7 @@ Created on Mon May  3 21:10:29 2021
 
 import numpy
 from PCA import PCA
+import sys
 
 from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM, testKernelSVM, testPolinomialSVM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
@@ -17,6 +18,75 @@ from classificatori import computeMeanAndCovarianceForMultiVariate, \
             compute_matrix_Z_kernel_SVM, compute_polynomial_kernel, compute_RBF_kernel, computeParametersForPolinomialSVM
 from split import leaveOneOutSplit, kFoldSplit
 
+def compute_confusion(predicted_labels, LTE):
+    list_conf_matrix = []
+    #num_classes = len(numpy.unique(predicted_labels))
+    num_classes = len(numpy.unique(LTE))#prova
+    for pred_class in range(num_classes):
+        #predicted class i
+        predictions_class_loop = (predicted_labels == pred_class)
+        list_row_confusion_matrix = []
+        for correct_class in range(num_classes):
+            # features of class j
+            features_class_loop = (LTE == correct_class)
+            # compute element (i, j) of the matrix
+            num_features_prediction_label = (predictions_class_loop & features_class_loop).sum()
+            list_row_confusion_matrix.append(num_features_prediction_label)
+        list_conf_matrix.append(list_row_confusion_matrix)
+    confusion_matrix = numpy.array(list_conf_matrix)
+    return confusion_matrix
+
+def compute_decision_given_threshold(log_ratios, threshold):
+    list_predictions = []
+    for index in range(log_ratios.shape[0]):
+        if(log_ratios[index] > threshold):
+            list_predictions.append(1)
+        else:
+            list_predictions.append(0)
+    return numpy.array(list_predictions)
+
+def compute_bayes_risk(confusion_matrix, p1, cfn, cfp):
+    FN = confusion_matrix[0][1]
+    TP = confusion_matrix[1][1]
+    FP = confusion_matrix[1][0]
+    TN = confusion_matrix[0][0]
+    FNR = FN/(FN + TP)
+    FPR = FP/(FP + TN)
+    return p1*cfn * FNR + (1 - p1)*cfp * FPR
+
+def compute_normalized_DCF(p1, cfn, cfp, bayes_risk):
+    Bdummy = min(p1*cfn, (1-p1)*cfp)
+    return  bayes_risk/Bdummy
+
+def compute_min_dcf(log_likelihood_ratios, labels, p1, cfn, cfp):
+    list_thresholds = sorted(log_likelihood_ratios) #sort in ascending order
+    list_thresholds.insert(0, sys.float_info.min)
+    list_thresholds.append(sys.float_info.max)
+    min_DCF = sys.float_info.max
+    for threshold in list_thresholds:
+        decisions = compute_decision_given_threshold(log_likelihood_ratios, threshold)
+        confusion_matrix = compute_confusion(decisions, labels)
+        bayes_risk = compute_bayes_risk(confusion_matrix, p1, cfn, cfp)
+        # compute normalized DCF
+        DCF = compute_normalized_DCF(p1, cfn, cfp, bayes_risk)
+        #print(DCF)
+        if DCF < min_DCF:
+            min_DCF = DCF
+    return min_DCF
+
+"""
+compute the min dcf given different values of priors (0.5, 0.1, 0.9) and return a list 
+in which each element is the min dcf of the prior
+"""
+def compute_min_dcf_different_priors(log_likelihood_ratios, labels):
+    list_p1 = [0.5, 0.1, 0.9]
+    cfn = 1
+    cfp = 1
+    min_dcf_priors = []
+    for p1 in list_p1:
+        min_dcf_p1 = compute_min_dcf(log_likelihood_ratios, labels, p1, cfn, cfp)
+        min_dcf_priors.append([p1, min_dcf_p1])
+    return min_dcf_priors
 
 """applica e testa il modello selezionato sulla singola iterazione 
 input:
@@ -33,19 +103,19 @@ def applyAndTestModels(DTR, LTR, DTE, LTE, model, params):
     if model == 0:
         """MVG"""
         mu, sigma = computeMeanAndCovarianceForMultiVariate(DTR, LTR)
-        acc, err, _ = testModel(mu, sigma, DTE, LTE)
+        acc, err, scores = testModel(mu, sigma, DTE, LTE)
         #print(err)
     
     elif model == 1:
         """Naive Bayes"""  
         mu , sigma = computeMeanAndCovarianceForNaiveBayes(DTR, LTR)
-        acc, err, _ = testModel(mu, sigma, DTE, LTE)
+        acc, err, scores = testModel(mu, sigma, DTE, LTE)
         #print(err)
         
     elif model == 2: 
         """Tied"""    
         mu, sigma= computeMeanAndCovarianceForTied(DTR, LTR)
-        acc, err, _ = testModel(mu, sigma, DTE, LTE)
+        acc, err, scores = testModel(mu, sigma, DTE, LTE)
         #print(err)
     elif model == 3: 
         """Logistic Regression"""    
@@ -92,9 +162,9 @@ def applyAndTestModels(DTR, LTR, DTE, LTE, model, params):
         d = params[2]
         c = params[3]
         optimalAlpha = computeParametersForPolinomialSVM(DTR, LTR, k, C, d, c)
-        acc, err, S = testPolinomialSVM(optimalAlpha, LTR, DTR, DTE, LTE, c, d, k)     
+        acc, err, scores = testPolinomialSVM(optimalAlpha, LTR, DTR, DTE, LTE, c, d, k)     
         
-    return acc, err
+    return acc, err, scores
 
 """esegue il leave one out split
 input:
@@ -107,6 +177,7 @@ Output:
 def kFold(D, L, model, params=[]):
     errors = []
     accuracies = []
+    scores = []
     k = 3
     """
     for leftOut in range(D.shape[1]):
@@ -115,14 +186,17 @@ def kFold(D, L, model, params=[]):
     
     for foldIndex in range (0, k):
         (DTR, LTR), (DTE, LTE) = kFoldSplit(D, L, foldIndex, k)
-        acc, err = applyAndTestModels(DTR, LTR, DTE, LTE, model, params)
+        acc, err, scores_k = applyAndTestModels(DTR, LTR, DTE, LTE, model, params)
+        scores.append(scores_k)
         accuracies.append( acc )
         errors.append(  err )
         
+    scores = numpy.hstack(scores)
+    min_DCF_priors = compute_min_dcf_different_priors(scores, L)
     
     acc = sum(accuracies) / len(accuracies)
     err = sum(errors) / len(errors)
-    return acc, err
+    return acc, err, min_DCF_priors
 
 """
 esegue tutti i test possibili
@@ -147,22 +221,36 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
     DTRPCA = numpy.zeros((1,1), dtype="float64")
     m = 0
     minDimentionsTested = 5
+    
     """
     for m in range(minDimentionsTested, DTR.shape[0]+1):       
         DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
         #DTRPCA = PCA(DTR, m)
-        acc_MVG,err_MVG = kFold(DTRPCA, LTR, 0)
+        acc_MVG,err_MVG, min_DCF_MVG_priors = kFold(DTRPCA, LTR, 0)
         print("Error rate MVG with PCA (m=" + str(m) + "): " + str(format(err_MVG * 100, ".2f")) + "%\n")
+        for list_min_DCF in min_DCF_MVG_priors:
+            p1 = list_min_DCF[0]
+            min_DCF_MVG = list_min_DCF[1]
+            print("min DCF(prior p1={}) MVG with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_MVG, ".3f") )))
     
     for m in range(minDimentionsTested, DTR.shape[0]+1):        
         DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
-        acc_Naive, err_Naive = kFold(DTRPCA, LTR, 1)
+        acc_Naive, err_Naive, min_DCF_Naive_priors = kFold(DTRPCA, LTR, 1)
         print("Error rate Naive Bayes with PCA (m=" + str(m) + "): " + str(format(err_Naive * 100, ".2f")) + "%\n")
-    
+        for list_min_DCF in min_DCF_Naive_priors:
+            p1 = list_min_DCF[0]
+            min_DCF_Naive = list_min_DCF[1]
+            print("min DCF(prior p1={}) Naive with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Naive, ".3f") )))
+
+    """
     for m in range(minDimentionsTested, DTR.shape[0]+1):        
         DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)
-        acc_Tied, err_Tied = kFold(DTRPCA, LTR, 2)
+        acc_Tied, err_Tied, min_DCF_tied_priors = kFold(DTRPCA, LTR, 2)
         print("Error rate Tied with PCA (m=" + str(m) + "): " + str(format(err_Tied * 100, ".2f")) + "%\n")
+        for list_min_DCF in min_DCF_tied_priors:
+            p1 = list_min_DCF[0]
+            min_DCF_Tied = list_min_DCF[1]
+            print("min DCF(prior p1={}) Tied with PCA (m={}): {}\n".format(str(p1), str(m), str(format(min_DCF_Tied, ".3f") )))
     
     for m in range(minDimentionsTested, DTR.shape[0]+1):        
         DTRPCA = compute_PCA_if_needed(DTR, DTRPCA, m)    
@@ -233,4 +321,4 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                 params.append(c)
                 acc_PoliSVM2, err_PoliSVM2 = kFold(DTRPCA, LTR, 8, params)
                 print("Error rate Polinomial SVM with PCA (m=" + str(m) + ", k = " + str(k) + ", C = " + str(C) + ", c = " + str(c) + ", d = " + str(d) + "): " + str(format(err_PoliSVM2 * 100, ".2f")) + "%\n")    
-    """     
+         
