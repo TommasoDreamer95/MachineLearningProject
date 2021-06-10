@@ -12,7 +12,15 @@ def load_data():
     DTE, LTE = load("./data/Test.txt")
     DTR, LTR = load("./data/Train.txt")
     return (DTE, LTE) , (DTR, LTR)
-    
+
+def load_data_TR():
+    DTR, LTR = load("./data/Train.txt")
+    return (DTR, LTR)
+
+def load_data_TE():
+    DTE, LTE = load("./data/Test.txt")
+    return (DTE, LTE)
+
 """input = file name
 output : 
     1) Data Matrix (#variates, #samples)
