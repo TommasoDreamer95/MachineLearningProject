@@ -73,7 +73,7 @@ def plot_scatter(D, L):
         10: 'alcohol'
         }
     for idx in range(0, D.shape[0]):
-        for i in range(0, D.shape[0]):
+        for i in range(idx+1, D.shape[0]):
             if i != idx:
                 plt.figure()
                 plt.xlabel(hFea[idx]);
