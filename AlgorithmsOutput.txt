@@ -2,287 +2,891 @@
 
 Error rate MVG with PCA (m=5): 21.37%
 
-min DCF(prior p1=0.5) MVG with PCA (m=5): 0.502
-
-min DCF(prior p1=0.1) MVG with PCA (m=5): 0.856
-
-min DCF(prior p1=0.9) MVG with PCA (m=5): 0.998
+min DCF(prior p1=0.5, optimal threshold: -0.42275) MVG with PCA (m=5): 0.502
 
 Error rate MVG with PCA (m=6): 21.81%
 
-min DCF(prior p1=0.5) MVG with PCA (m=6): 0.503
-
-min DCF(prior p1=0.1) MVG with PCA (m=6): 0.844
-
-min DCF(prior p1=0.9) MVG with PCA (m=6): 0.997
+min DCF(prior p1=0.5, optimal threshold: -0.13388) MVG with PCA (m=6): 0.503
 
 Error rate MVG with PCA (m=7): 21.32%
 
-min DCF(prior p1=0.5) MVG with PCA (m=7): 0.458
-
-min DCF(prior p1=0.1) MVG with PCA (m=7): 0.895
-
-min DCF(prior p1=0.9) MVG with PCA (m=7): 0.918
+min DCF(prior p1=0.5, optimal threshold: -0.57656) MVG with PCA (m=7): 0.458
 
 Error rate MVG with PCA (m=8): 20.17%
 
-min DCF(prior p1=0.5) MVG with PCA (m=8): 0.445
-
-min DCF(prior p1=0.1) MVG with PCA (m=8): 0.902
-
-min DCF(prior p1=0.9) MVG with PCA (m=8): 0.913
+min DCF(prior p1=0.5, optimal threshold: -0.51715) MVG with PCA (m=8): 0.445
 
 Error rate MVG with PCA (m=9): 20.07%
 
-min DCF(prior p1=0.5) MVG with PCA (m=9): 0.450
-
-min DCF(prior p1=0.1) MVG with PCA (m=9): 0.889
-
-min DCF(prior p1=0.9) MVG with PCA (m=9): 0.955
+min DCF(prior p1=0.5, optimal threshold: 0.59078) MVG with PCA (m=9): 0.450
 
 Error rate MVG with PCA (m=10): 23.06%
 
-min DCF(prior p1=0.5) MVG with PCA (m=10): 0.495
-
-min DCF(prior p1=0.1) MVG with PCA (m=10): 0.859
-
-min DCF(prior p1=0.9) MVG with PCA (m=10): 0.995
+min DCF(prior p1=0.5, optimal threshold: 1.00949) MVG with PCA (m=10): 0.495
 
 No PCA
 Error rate MVG with PCA (m=11): 23.27%
 
-min DCF(prior p1=0.5) MVG with PCA (m=11): 0.493
-
-min DCF(prior p1=0.1) MVG with PCA (m=11): 0.844
-
-min DCF(prior p1=0.9) MVG with PCA (m=11): 0.995
+min DCF(prior p1=0.5, optimal threshold: 1.20776) MVG with PCA (m=11): 0.493
 
 
 
 Error rate Naive Bayes with PCA (m=5): 21.10%
 
-min DCF(prior p1=0.5) Naive with PCA (m=5): 0.449
-
-min DCF(prior p1=0.1) Naive with PCA (m=5): 0.892
-
-min DCF(prior p1=0.9) Naive with PCA (m=5): 0.997
+min DCF(prior p1=0.5, optimal threshold: -0.24242) Naive with PCA (m=5): 0.449
 
 Error rate Naive Bayes with PCA (m=6): 20.07%
 
-min DCF(prior p1=0.5) Naive with PCA (m=6): 0.442
-
-min DCF(prior p1=0.1) Naive with PCA (m=6): 0.879
-
-min DCF(prior p1=0.9) Naive with PCA (m=6): 0.993
+min DCF(prior p1=0.5, optimal threshold: 0.00000) Naive with PCA (m=6): 0.442
 
 Error rate Naive Bayes with PCA (m=7): 19.20%
 
-min DCF(prior p1=0.5) Naive with PCA (m=7): 0.414
-
-min DCF(prior p1=0.1) Naive with PCA (m=7): 0.907
-
-min DCF(prior p1=0.9) Naive with PCA (m=7): 0.992
+min DCF(prior p1=0.5, optimal threshold: -0.04032) Naive with PCA (m=7): 0.414
 
 Error rate Naive Bayes with PCA (m=8): 19.68%
 
-min DCF(prior p1=0.5) Naive with PCA (m=8): 0.423
-
-min DCF(prior p1=0.1) Naive with PCA (m=8): 0.896
-
-min DCF(prior p1=0.9) Naive with PCA (m=8): 0.995
+min DCF(prior p1=0.5, optimal threshold: -0.07279) Naive with PCA (m=8): 0.423
 
 Error rate Naive Bayes with PCA (m=9): 20.61%
 
-min DCF(prior p1=0.5) Naive with PCA (m=9): 0.432
-
-min DCF(prior p1=0.1) Naive with PCA (m=9): 0.914
-
-min DCF(prior p1=0.9) Naive with PCA (m=9): 0.971
+min DCF(prior p1=0.5, optimal threshold: -0.43523) Naive with PCA (m=9): 0.432
 
 Error rate Naive Bayes with PCA (m=10): 21.64%
 
-min DCF(prior p1=0.5) Naive with PCA (m=10): 0.443
-
-min DCF(prior p1=0.1) Naive with PCA (m=10): 0.896
-
-min DCF(prior p1=0.9) Naive with PCA (m=10): 0.993
+min DCF(prior p1=0.5, optimal threshold: -0.02996) Naive with PCA (m=10): 0.443
 
 No PCA
 Error rate Naive Bayes with PCA (m=11): 25.61%
 
-min DCF(prior p1=0.5) Naive with PCA (m=11): 0.497
-
-min DCF(prior p1=0.1) Naive with PCA (m=11): 0.860
-
-min DCF(prior p1=0.9) Naive with PCA (m=11): 0.995
+min DCF(prior p1=0.5, optimal threshold: 0.78960) Naive with PCA (m=11): 0.497
 
 
 
 Error rate Tied with PCA (m=5): 21.91%
 
-min DCF(prior p1=0.5) Tied with PCA (m=5): 0.466
-
-min DCF(prior p1=0.1) Tied with PCA (m=5): 0.892
-
-min DCF(prior p1=0.9) Tied with PCA (m=5): 0.989
+min DCF(prior p1=0.5, optimal threshold: -0.13335) Tied with PCA (m=5): 0.466
 
 Error rate Tied with PCA (m=6): 20.01%
 
-min DCF(prior p1=0.5) Tied with PCA (m=6): 0.424
-
-min DCF(prior p1=0.1) Tied with PCA (m=6): 0.875
-
-min DCF(prior p1=0.9) Tied with PCA (m=6): 0.896
+min DCF(prior p1=0.5, optimal threshold: -0.34085) Tied with PCA (m=6): 0.424
 
 Error rate Tied with PCA (m=7): 18.76%
 
-min DCF(prior p1=0.5) Tied with PCA (m=7): 0.405
-
-min DCF(prior p1=0.1) Tied with PCA (m=7): 0.853
-
-min DCF(prior p1=0.9) Tied with PCA (m=7): 0.902
+min DCF(prior p1=0.5, optimal threshold: -0.79163) Tied with PCA (m=7): 0.405
 
 Error rate Tied with PCA (m=8): 19.20%
 
-min DCF(prior p1=0.5) Tied with PCA (m=8): 0.406
-
-min DCF(prior p1=0.1) Tied with PCA (m=8): 0.843
-
-min DCF(prior p1=0.9) Tied with PCA (m=8): 0.902
+min DCF(prior p1=0.5, optimal threshold: -0.70811) Tied with PCA (m=8): 0.406
 
 Error rate Tied with PCA (m=9): 19.36%
 
-min DCF(prior p1=0.5) Tied with PCA (m=9): 0.400
-
-min DCF(prior p1=0.1) Tied with PCA (m=9): 0.862
-
-min DCF(prior p1=0.9) Tied with PCA (m=9): 0.799
+min DCF(prior p1=0.5, optimal threshold: -0.43920) Tied with PCA (m=9): 0.400
 
 Error rate Tied with PCA (m=10): 19.41%
 
-min DCF(prior p1=0.5) Tied with PCA (m=10): 0.400
-
-min DCF(prior p1=0.1) Tied with PCA (m=10): 0.858
-
-min DCF(prior p1=0.9) Tied with PCA (m=10): 0.811
+min DCF(prior p1=0.5, optimal threshold: -0.60131) Tied with PCA (m=10): 0.400
 
 No PCA
 Error rate Tied with PCA (m=11): 20.12%
 
-min DCF(prior p1=0.5) Tied with PCA (m=11): 0.449
-
-min DCF(prior p1=0.1) Tied with PCA (m=11): 0.874
-
-min DCF(prior p1=0.9) Tied with PCA (m=11): 0.912
+min DCF(prior p1=0.5, optimal threshold: -0.38900) Tied with PCA (m=11): 0.449
 
 
 
 Error rate Logistic Regression with PCA (m=5, l = 0): 20.39%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=0): 0.479
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=0): 0.892
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=0): 0.995
+min DCF(prior p1=0.5, optimal threshold: -0.43690) Logistic Regression with PCA (m=5, l=0): 0.477
 
 Error rate Logistic Regression with PCA (m=5, l = 1e-06): 20.39%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=1e-06): 0.477
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=1e-06): 0.892
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=1e-06): 0.995
+min DCF(prior p1=0.5, optimal threshold: -0.43695) Logistic Regression with PCA (m=5, l=1e-06): 0.479
 
 Error rate Logistic Regression with PCA (m=5, l = 0.001): 20.39%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=0.001): 0.477
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=0.001): 0.892
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=0.001): 0.995
+min DCF(prior p1=0.5, optimal threshold: -0.43955) Logistic Regression with PCA (m=5, l=0.001): 0.477
 
 Error rate Logistic Regression with PCA (m=5, l = 1): 40.78%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=5, l=1): 0.676
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=5, l=1): 1.000
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=5, l=1): 0.999
+min DCF(prior p1=0.5, optimal threshold: -0.83440) Logistic Regression with PCA (m=5, l=1): 0.676
 
 Error rate Logistic Regression with PCA (m=6, l = 0): 20.88%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=0): 0.440
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=0): 0.887
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=0): 0.905
+min DCF(prior p1=0.5, optimal threshold: -1.01898) Logistic Regression with PCA (m=6, l=0): 0.440
 
 Error rate Logistic Regression with PCA (m=6, l = 1e-06): 20.88%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=1e-06): 0.440
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=1e-06): 0.887
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=1e-06): 0.905
+min DCF(prior p1=0.5, optimal threshold: -1.01919) Logistic Regression with PCA (m=6, l=1e-06): 0.440
 
 Error rate Logistic Regression with PCA (m=6, l = 0.001): 20.77%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=0.001): 0.431
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=0.001): 0.894
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=0.001): 0.921
+min DCF(prior p1=0.5, optimal threshold: -0.86654) Logistic Regression with PCA (m=6, l=0.001): 0.431
 
 Error rate Logistic Regression with PCA (m=6, l = 1): 40.78%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=6, l=1): 0.678
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=6, l=1): 1.000
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=6, l=1): 0.999
+min DCF(prior p1=0.5, optimal threshold: -0.83732) Logistic Regression with PCA (m=6, l=1): 0.678
 
 Error rate Logistic Regression with PCA (m=7, l = 0): 19.41%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=0): 0.408
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=0): 0.845
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=0): 0.835
+min DCF(prior p1=0.5, optimal threshold: -0.76504) Logistic Regression with PCA (m=7, l=0): 0.408
 
 Error rate Logistic Regression with PCA (m=7, l = 1e-06): 19.41%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=1e-06): 0.408
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=1e-06): 0.845
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=1e-06): 0.835
+min DCF(prior p1=0.5, optimal threshold: -0.76434) Logistic Regression with PCA (m=7, l=1e-06): 0.408
 
 Error rate Logistic Regression with PCA (m=7, l = 0.001): 19.90%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=0.001): 0.405
+min DCF(prior p1=0.5, optimal threshold: -0.99814) Logistic Regression with PCA (m=7, l=0.001): 0.405
 
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=0.001): 0.856
+Error rate Logistic Regression with PCA (m=7, l = 1): 40.84%
 
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=0.001): 0.887
-
-Error rate Logistic Regression with PCA (m=7, l = 1): 40.78%
-
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=7, l=1): 0.677
-
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=7, l=1): 1.000
-
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=7, l=1): 0.999
+min DCF(prior p1=0.5, optimal threshold: -0.83730) Logistic Regression with PCA (m=7, l=1): 0.677
 
 Error rate Logistic Regression with PCA (m=8, l = 0): 19.41%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=8, l=0): 0.401
+min DCF(prior p1=0.5, optimal threshold: -0.92882) Logistic Regression with PCA (m=8, l=0): 0.401
 
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=8, l=0): 0.869
+Error rate Logistic Regression with PCA (m=8, l = 1e-06): 19.41%
 
-min DCF(prior p1=0.9) Logistic Regression with PCA (m=8, l=0): 0.835
+min DCF(prior p1=0.5, optimal threshold: -0.93542) Logistic Regression with PCA (m=8, l=1e-06): 0.401
 
-Error rate Logistic Regression with PCA (m=8, l = 1e-06): 19.47%
+Error rate Logistic Regression with PCA (m=8, l = 0.001): 19.90%
 
-min DCF(prior p1=0.5) Logistic Regression with PCA (m=8, l=1e-06): 0.401
+min DCF(prior p1=0.5, optimal threshold: -1.00523) Logistic Regression with PCA (m=8, l=0.001): 0.399
 
-min DCF(prior p1=0.1) Logistic Regression with PCA (m=8, l=1e-06): 0.869
+Error rate Logistic Regression with PCA (m=8, l = 1): 40.78%
+
+min DCF(prior p1=0.5, optimal threshold: -0.83751) Logistic Regression with PCA (m=8, l=1): 0.677
+
+Error rate Logistic Regression with PCA (m=9, l = 0): 20.17%
+
+min DCF(prior p1=0.5, optimal threshold: -1.13284) Logistic Regression with PCA (m=9, l=0): 0.419
+
+Error rate Logistic Regression with PCA (m=9, l = 1e-06): 20.12%
+
+min DCF(prior p1=0.5, optimal threshold: -1.07985) Logistic Regression with PCA (m=9, l=1e-06): 0.418
+
+Error rate Logistic Regression with PCA (m=9, l = 0.001): 19.96%
+
+min DCF(prior p1=0.5, optimal threshold: -1.19430) Logistic Regression with PCA (m=9, l=0.001): 0.392
+
+Error rate Logistic Regression with PCA (m=9, l = 1): 40.84%
+
+min DCF(prior p1=0.5, optimal threshold: -0.83775) Logistic Regression with PCA (m=9, l=1): 0.677
+
+Error rate Logistic Regression with PCA (m=10, l = 0): 20.17%
+
+min DCF(prior p1=0.5, optimal threshold: -1.24826) Logistic Regression with PCA (m=10, l=0): 0.423
+
+Error rate Logistic Regression with PCA (m=10, l = 1e-06): 20.28%
+
+min DCF(prior p1=0.5, optimal threshold: -1.32115) Logistic Regression with PCA (m=10, l=1e-06): 0.423
+
+Error rate Logistic Regression with PCA (m=10, l = 0.001): 19.90%
+
+min DCF(prior p1=0.5, optimal threshold: -1.11246) Logistic Regression with PCA (m=10, l=0.001): 0.394
+
+Error rate Logistic Regression with PCA (m=10, l = 1): 40.78%
+
+min DCF(prior p1=0.5, optimal threshold: -0.83630) Logistic Regression with PCA (m=10, l=1): 0.675
+
+No PCA
+Error rate Logistic Regression with PCA (m=11, l = 0): 19.90%
+
+min DCF(prior p1=0.5, optimal threshold: -1.13745) Logistic Regression with PCA (m=11, l=0): 0.418
+
+Error rate Logistic Regression with PCA (m=11, l = 1e-06): 19.96%
+
+min DCF(prior p1=0.5, optimal threshold: -1.13598) Logistic Regression with PCA (m=11, l=1e-06): 0.416
+
+Error rate Logistic Regression with PCA (m=11, l = 0.001): 19.90%
+
+min DCF(prior p1=0.5, optimal threshold: -1.19007) Logistic Regression with PCA (m=11, l=0.001): 0.391
+
+Error rate Logistic Regression with PCA (m=11, l = 1): 40.78%
+
+min DCF(prior p1=0.5, optimal threshold: -0.83629) Logistic Regression with PCA (m=11, l=1): 0.675
+
+
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 1): 21.37%
+
+min DCF(prior p1=0.5, optimal threshold: -0.42275) Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 1 ): 0.502
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 2): 21.42%
+
+min DCF(prior p1=0.5, optimal threshold: -0.43346) Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 2 ): 0.509
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 4): 21.75%
+
+min DCF(prior p1=0.5, optimal threshold: -0.00517) Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 4 ): 0.524
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 8): 21.48%
+
+min DCF(prior p1=0.5, optimal threshold: -0.71316) Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 8 ): 0.488
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 16): 26.75%
+
+min DCF(prior p1=0.5, optimal threshold: -0.61260) Gaussian Mixture Model with PCA (m=5, impl = standard, GMMs = 16 ): 0.608
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 1): 21.10%
+
+min DCF(prior p1=0.5, optimal threshold: -0.24242) Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 1 ): 0.449
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 2): 20.77%
+
+min DCF(prior p1=0.5, optimal threshold: -0.05974) Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 2 ): 0.476
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 4): 23.82%
+
+min DCF(prior p1=0.5, optimal threshold: -0.37179) Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 4 ): 0.534
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 8): 22.35%
+
+min DCF(prior p1=0.5, optimal threshold: -0.63663) Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 8 ): 0.492
+
+Error rate Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 16): 25.50%
+
+min DCF(prior p1=0.5, optimal threshold: -1.09167) Gaussian Mixture Model with PCA (m=5, impl = diagonal, GMMs = 16 ): 0.595
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 1): 21.86%
+
+min DCF(prior p1=0.5, optimal threshold: -0.13388) Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 1 ): 0.503
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 2): 21.37%
+
+min DCF(prior p1=0.5, optimal threshold: -0.60016) Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 2 ): 0.498
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 4): 21.81%
+
+min DCF(prior p1=0.5, optimal threshold: 0.13162) Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 4 ): 0.506
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 8): 20.07%
+
+min DCF(prior p1=0.5, optimal threshold: -1.29035) Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 8 ): 0.434
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 16): 22.95%
+
+min DCF(prior p1=0.5, optimal threshold: -1.70556) Gaussian Mixture Model with PCA (m=6, impl = standard, GMMs = 16 ): 0.517
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 1): 20.07%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000) Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 1 ): 0.442
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 2): 24.42%
+
+min DCF(prior p1=0.5, optimal threshold: 0.05947) Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 2 ): 0.498
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 4): 25.18%
+
+min DCF(prior p1=0.5, optimal threshold: -0.22039) Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 4 ): 0.558
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 8): 23.82%
+
+min DCF(prior p1=0.5, optimal threshold: -0.57719) Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 8 ): 0.535
+
+Error rate Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 16): 21.86%
+
+min DCF(prior p1=0.5, optimal threshold: -0.31368) Gaussian Mixture Model with PCA (m=6, impl = diagonal, GMMs = 16 ): 0.523
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 1): 21.59%
+
+min DCF(prior p1=0.5, optimal threshold: -0.56866) Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 1 ): 0.458
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 2): 22.19%
+
+min DCF(prior p1=0.5, optimal threshold: -0.25452) Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 2 ): 0.509
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 4): 22.46%
+
+min DCF(prior p1=0.5, optimal threshold: -0.30698) Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 4 ): 0.510
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 8): 21.10%
+
+min DCF(prior p1=0.5, optimal threshold: -1.17841) Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 8 ): 0.480
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 16): 22.84%
+
+min DCF(prior p1=0.5, optimal threshold: -0.66693) Gaussian Mixture Model with PCA (m=7, impl = standard, GMMs = 16 ): 0.533
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 1): 19.20%
+
+min DCF(prior p1=0.5, optimal threshold: -0.04032) Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 1 ): 0.414
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 2): 22.24%
+
+min DCF(prior p1=0.5, optimal threshold: -0.05136) Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 2 ): 0.464
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 4): 23.82%
+
+min DCF(prior p1=0.5, optimal threshold: -0.10950) Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 4 ): 0.536
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 8): 20.12%
+
+min DCF(prior p1=0.5, optimal threshold: -0.00562) Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 8 ): 0.467
+
+Error rate Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 16): 22.35%
+
+min DCF(prior p1=0.5, optimal threshold: -0.69072) Gaussian Mixture Model with PCA (m=7, impl = diagonal, GMMs = 16 ): 0.523
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 1): 20.55%
+
+min DCF(prior p1=0.5, optimal threshold: 0.32926) Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 1 ): 0.450
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 2): 21.91%
+
+min DCF(prior p1=0.5, optimal threshold: -0.26060) Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 2 ): 0.486
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 4): 21.86%
+
+min DCF(prior p1=0.5, optimal threshold: -0.12985) Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 4 ): 0.507
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 8): 22.19%
+
+min DCF(prior p1=0.5, optimal threshold: -1.74314) Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 8 ): 0.504
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 16): 23.00%
+
+min DCF(prior p1=0.5, optimal threshold: -1.39698) Gaussian Mixture Model with PCA (m=8, impl = standard, GMMs = 16 ): 0.503
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 1): 19.68%
+
+min DCF(prior p1=0.5, optimal threshold: -0.07279) Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 1 ): 0.423
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 2): 22.62%
+
+min DCF(prior p1=0.5, optimal threshold: -0.25111) Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 2 ): 0.504
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 4): 23.11%
+
+min DCF(prior p1=0.5, optimal threshold: 0.03465) Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 4 ): 0.529
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 8): 20.39%
+
+min DCF(prior p1=0.5, optimal threshold: -0.11624) Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 8 ): 0.464
+
+Error rate Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 16): 23.76%
+
+min DCF(prior p1=0.5, optimal threshold: -1.05888) Gaussian Mixture Model with PCA (m=8, impl = diagonal, GMMs = 16 ): 0.529
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 1): 20.28%
+
+min DCF(prior p1=0.5, optimal threshold: -0.27963) Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 1 ): 0.448
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 2): 20.39%
+
+min DCF(prior p1=0.5, optimal threshold: -0.33524) Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 2 ): 0.459
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 4): 20.88%
+
+min DCF(prior p1=0.5, optimal threshold: -0.47691) Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 4 ): 0.475
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 8): 19.85%
+
+min DCF(prior p1=0.5, optimal threshold: -0.50035) Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 8 ): 0.431
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 16): 21.48%
+
+min DCF(prior p1=0.5, optimal threshold: -1.05231) Gaussian Mixture Model with PCA (m=9, impl = standard, GMMs = 16 ): 0.511
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 1): 20.45%
+
+min DCF(prior p1=0.5, optimal threshold: -0.43269) Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 1 ): 0.429
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 2): 22.95%
+
+min DCF(prior p1=0.5, optimal threshold: -0.09123) Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 2 ): 0.481
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 4): 23.06%
+
+min DCF(prior p1=0.5, optimal threshold: -0.35555) Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 4 ): 0.521
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 8): 20.17%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54190) Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 8 ): 0.451
+
+Error rate Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 16): 23.38%
+
+min DCF(prior p1=0.5, optimal threshold: -1.48257) Gaussian Mixture Model with PCA (m=9, impl = diagonal, GMMs = 16 ): 0.507
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 1): 20.28%
+
+min DCF(prior p1=0.5, optimal threshold: -0.26915) Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 1 ): 0.448
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 2): 20.55%
+
+min DCF(prior p1=0.5, optimal threshold: -0.64049) Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 2 ): 0.458
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 4): 20.94%
+
+min DCF(prior p1=0.5, optimal threshold: -0.52102) Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 4 ): 0.478
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 8): 19.74%
+
+min DCF(prior p1=0.5, optimal threshold: -0.16081) Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 8 ): 0.427
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 16): 23.22%
+
+min DCF(prior p1=0.5, optimal threshold: -1.03798) Gaussian Mixture Model with PCA (m=10, impl = standard, GMMs = 16 ): 0.531
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 1): 20.34%
+
+min DCF(prior p1=0.5, optimal threshold: -0.43405) Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 1 ): 0.429
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 2): 22.89%
+
+min DCF(prior p1=0.5, optimal threshold: -0.05635) Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 2 ): 0.481
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 4): 23.00%
+
+min DCF(prior p1=0.5, optimal threshold: -0.32462) Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 4 ): 0.522
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 8): 20.01%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54316) Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 8 ): 0.452
+
+Error rate Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 16): 23.11%
+
+min DCF(prior p1=0.5, optimal threshold: -1.43942) Gaussian Mixture Model with PCA (m=10, impl = diagonal, GMMs = 16 ): 0.504
+
+No PCA
+Error rate Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 1): 20.28%
+
+min DCF(prior p1=0.5, optimal threshold: -0.26914) Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 1 ): 0.448
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 2): 20.55%
+
+min DCF(prior p1=0.5, optimal threshold: -0.64048) Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 2 ): 0.458
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 4): 20.94%
+
+min DCF(prior p1=0.5, optimal threshold: -0.52102) Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 4 ): 0.478
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 8): 19.74%
+
+min DCF(prior p1=0.5, optimal threshold: -0.45257) Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 8 ): 0.427
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 16): 23.27%
+
+min DCF(prior p1=0.5, optimal threshold: -1.51117) Gaussian Mixture Model with PCA (m=11, impl = standard, GMMs = 16 ): 0.529
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 1): 22.68%
+
+min DCF(prior p1=0.5, optimal threshold: 0.54606) Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 1 ): 0.451
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 2): 21.70%
+
+min DCF(prior p1=0.5, optimal threshold: 0.02350) Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 2 ): 0.457
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 4): 21.26%
+
+min DCF(prior p1=0.5, optimal threshold: -0.45036) Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 4 ): 0.458
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 8): 22.89%
+
+min DCF(prior p1=0.5, optimal threshold: -1.34403) Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 8 ): 0.471
+
+Error rate Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 16): 21.26%
+
+min DCF(prior p1=0.5, optimal threshold: -0.62851) Gaussian Mixture Model with PCA (m=11, impl = diagonal, GMMs = 16 ): 0.481
+
+
+
+Error rate Linear SVM with PCA (m=5, k = 1, C = 0.1): 26.70%
+
+min DCF(prior p1=0.5, optimal threshold: -0.63868) Linear SVM with PCA (m=5, k = 1, C = 0.1 ): 0.562
+
+Error rate Linear SVM with PCA (m=5, k = 1, C = 1.0): 26.75%
+
+min DCF(prior p1=0.5, optimal threshold: -1.26973) Linear SVM with PCA (m=5, k = 1, C = 1.0 ): 0.509
+
+Error rate Linear SVM with PCA (m=5, k = 1, C = 10.0): 42.09%
+
+min DCF(prior p1=0.5, optimal threshold: -36.02129) Linear SVM with PCA (m=5, k = 1, C = 10.0 ): 0.895
+
+Error rate Linear SVM with PCA (m=5, k = 10, C = 0.1): 20.07%
+
+min DCF(prior p1=0.5, optimal threshold: -0.67085) Linear SVM with PCA (m=5, k = 10, C = 0.1 ): 0.463
+
+Error rate Linear SVM with PCA (m=5, k = 10, C = 1.0): 46.06%
+
+min DCF(prior p1=0.5, optimal threshold: 4.02914) Linear SVM with PCA (m=5, k = 10, C = 1.0 ): 0.864
+
+Error rate Linear SVM with PCA (m=5, k = 10, C = 10.0): 44.54%
+
+min DCF(prior p1=0.5, optimal threshold: 3.70064) Linear SVM with PCA (m=5, k = 10, C = 10.0 ): 0.794
+
+Error rate Linear SVM with PCA (m=6, k = 1, C = 0.1): 27.62%
+
+min DCF(prior p1=0.5, optimal threshold: -0.49912) Linear SVM with PCA (m=6, k = 1, C = 0.1 ): 0.690
+
+Error rate Linear SVM with PCA (m=6, k = 1, C = 1.0): 27.95%
+
+min DCF(prior p1=0.5, optimal threshold: -1.64043) Linear SVM with PCA (m=6, k = 1, C = 1.0 ): 0.620
+
+Error rate Linear SVM with PCA (m=6, k = 1, C = 10.0): 40.89%
+
+min DCF(prior p1=0.5, optimal threshold: -15.85572) Linear SVM with PCA (m=6, k = 1, C = 10.0 ): 0.754
+
+Error rate Linear SVM with PCA (m=6, k = 10, C = 0.1): 19.90%
+
+min DCF(prior p1=0.5, optimal threshold: -0.47082) Linear SVM with PCA (m=6, k = 10, C = 0.1 ): 0.432
+
+Error rate Linear SVM with PCA (m=6, k = 10, C = 1.0): 25.56%
+
+min DCF(prior p1=0.5, optimal threshold: -0.61446) Linear SVM with PCA (m=6, k = 10, C = 1.0 ): 0.586
+
+Error rate Linear SVM with PCA (m=6, k = 10, C = 10.0): 42.25%
+
+min DCF(prior p1=0.5, optimal threshold: -1.35748) Linear SVM with PCA (m=6, k = 10, C = 10.0 ): 0.730
+
+Error rate Linear SVM with PCA (m=7, k = 1, C = 0.1): 31.05%
+
+min DCF(prior p1=0.5, optimal threshold: 0.29130) Linear SVM with PCA (m=7, k = 1, C = 0.1 ): 0.567
+
+Error rate Linear SVM with PCA (m=7, k = 1, C = 1.0): 37.90%
+
+min DCF(prior p1=0.5, optimal threshold: 0.77460) Linear SVM with PCA (m=7, k = 1, C = 1.0 ): 0.709
+
+Error rate Linear SVM with PCA (m=7, k = 1, C = 10.0): 46.06%
+
+min DCF(prior p1=0.5, optimal threshold: 2.87607) Linear SVM with PCA (m=7, k = 1, C = 10.0 ): 0.788
+
+Error rate Linear SVM with PCA (m=7, k = 10, C = 0.1): 19.85%
+
+min DCF(prior p1=0.5, optimal threshold: -0.39164) Linear SVM with PCA (m=7, k = 10, C = 0.1 ): 0.445
+
+Error rate Linear SVM with PCA (m=7, k = 10, C = 1.0): 31.05%
+
+min DCF(prior p1=0.5, optimal threshold: -2.73669) Linear SVM with PCA (m=7, k = 10, C = 1.0 ): 0.649
+
+Error rate Linear SVM with PCA (m=7, k = 10, C = 10.0): 43.28%
+
+min DCF(prior p1=0.5, optimal threshold: -17.45353) Linear SVM with PCA (m=7, k = 10, C = 10.0 ): 0.814
+
+Error rate Linear SVM with PCA (m=8, k = 1, C = 0.1): 21.97%
+
+min DCF(prior p1=0.5, optimal threshold: -0.65397) Linear SVM with PCA (m=8, k = 1, C = 0.1 ): 0.450
+
+Error rate Linear SVM with PCA (m=8, k = 1, C = 1.0): 27.24%
+
+min DCF(prior p1=0.5, optimal threshold: -0.86605) Linear SVM with PCA (m=8, k = 1, C = 1.0 ): 0.582
+
+Error rate Linear SVM with PCA (m=8, k = 1, C = 10.0): 34.69%
+
+min DCF(prior p1=0.5, optimal threshold: -31.59579) Linear SVM with PCA (m=8, k = 1, C = 10.0 ): 0.897
+
+Error rate Linear SVM with PCA (m=8, k = 10, C = 0.1): 20.12%
+
+min DCF(prior p1=0.5, optimal threshold: -0.56480) Linear SVM with PCA (m=8, k = 10, C = 0.1 ): 0.446
+
+Error rate Linear SVM with PCA (m=8, k = 10, C = 1.0): 26.21%
+
+min DCF(prior p1=0.5, optimal threshold: 0.15771) Linear SVM with PCA (m=8, k = 10, C = 1.0 ): 0.494
+
+Error rate Linear SVM with PCA (m=8, k = 10, C = 10.0): 33.17%
+
+min DCF(prior p1=0.5, optimal threshold: -8.70784) Linear SVM with PCA (m=8, k = 10, C = 10.0 ): 0.787
+
+Error rate Linear SVM with PCA (m=9, k = 1, C = 0.1): 20.55%
+
+min DCF(prior p1=0.5, optimal threshold: -0.40803) Linear SVM with PCA (m=9, k = 1, C = 0.1 ): 0.438
+
+Error rate Linear SVM with PCA (m=9, k = 1, C = 1.0): 34.75%
+
+min DCF(prior p1=0.5, optimal threshold: 0.79365) Linear SVM with PCA (m=9, k = 1, C = 1.0 ): 0.587
+
+Error rate Linear SVM with PCA (m=9, k = 1, C = 10.0): 33.33%
+
+min DCF(prior p1=0.5, optimal threshold: -80.74333) Linear SVM with PCA (m=9, k = 1, C = 10.0 ): 0.914
+
+Error rate Linear SVM with PCA (m=9, k = 10, C = 0.1): 19.03%
+
+min DCF(prior p1=0.5, optimal threshold: -0.79134) Linear SVM with PCA (m=9, k = 10, C = 0.1 ): 0.421
+
+Error rate Linear SVM with PCA (m=9, k = 10, C = 1.0): 21.97%
+
+min DCF(prior p1=0.5, optimal threshold: -0.50531) Linear SVM with PCA (m=9, k = 10, C = 1.0 ): 0.489
+
+Error rate Linear SVM with PCA (m=9, k = 10, C = 10.0): 32.95%
+
+min DCF(prior p1=0.5, optimal threshold: -3.31916) Linear SVM with PCA (m=9, k = 10, C = 10.0 ): 0.845
+
+Error rate Linear SVM with PCA (m=10, k = 1, C = 0.1): 21.10%
+
+min DCF(prior p1=0.5, optimal threshold: -0.74615) Linear SVM with PCA (m=10, k = 1, C = 0.1 ): 0.452
+
+Error rate Linear SVM with PCA (m=10, k = 1, C = 1.0): 38.28%
+
+min DCF(prior p1=0.5, optimal threshold: -0.44733) Linear SVM with PCA (m=10, k = 1, C = 1.0 ): 0.847
+
+Error rate Linear SVM with PCA (m=10, k = 1, C = 10.0): 33.44%
+
+min DCF(prior p1=0.5, optimal threshold: -12.95059) Linear SVM with PCA (m=10, k = 1, C = 10.0 ): 0.803
+
+Error rate Linear SVM with PCA (m=10, k = 10, C = 0.1): 18.76%
+
+min DCF(prior p1=0.5, optimal threshold: -0.38256) Linear SVM with PCA (m=10, k = 10, C = 0.1 ): 0.416
+
+Error rate Linear SVM with PCA (m=10, k = 10, C = 1.0): 32.08%
+
+min DCF(prior p1=0.5, optimal threshold: -3.28197) Linear SVM with PCA (m=10, k = 10, C = 1.0 ): 0.519
+
+Error rate Linear SVM with PCA (m=10, k = 10, C = 10.0): 51.77%
+
+min DCF(prior p1=0.5, optimal threshold: 3.87014) Linear SVM with PCA (m=10, k = 10, C = 10.0 ): 0.750
+
+No PCA
+Error rate Linear SVM with PCA (m=11, k = 1, C = 0.1): 21.26%
+
+min DCF(prior p1=0.5, optimal threshold: -0.12194) Linear SVM with PCA (m=11, k = 1, C = 0.1 ): 0.489
+
+Error rate Linear SVM with PCA (m=11, k = 1, C = 1.0): 26.64%
+
+min DCF(prior p1=0.5, optimal threshold: -1.93754) Linear SVM with PCA (m=11, k = 1, C = 1.0 ): 0.493
+
+Error rate Linear SVM with PCA (m=11, k = 1, C = 10.0): 50.19%
+
+min DCF(prior p1=0.5, optimal threshold: -74.26626) Linear SVM with PCA (m=11, k = 1, C = 10.0 ): 0.924
+
+Error rate Linear SVM with PCA (m=11, k = 10, C = 0.1): 19.41%
+
+min DCF(prior p1=0.5, optimal threshold: -0.59650) Linear SVM with PCA (m=11, k = 10, C = 0.1 ): 0.419
+
+Error rate Linear SVM with PCA (m=11, k = 10, C = 1.0): 25.83%
+
+min DCF(prior p1=0.5, optimal threshold: -2.66583) Linear SVM with PCA (m=11, k = 10, C = 1.0 ): 0.591
+
+Error rate Linear SVM with PCA (m=11, k = 10, C = 10.0): 53.72%
+
+min DCF(prior p1=0.5, optimal threshold: 4.47147) Linear SVM with PCA (m=11, k = 10, C = 10.0 ): 0.807
+
+
+
+Error rate RBF SVM with PCA (m=5, k = 0, C = 1, gamma = 1): 35.24%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=5, k = 0, C = 1, gamma = 1 ): 0.795
+
+Error rate RBF SVM with PCA (m=5, k = 1, C = 1, gamma = 1): 33.17%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53747)  RBF SVM with PCA (m=5, k = 1, C = 1, gamma = 1 ): 0.950
+
+Error rate RBF SVM with PCA (m=5, k = 0, C = 1, gamma = 10): 34.80%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=5, k = 0, C = 1, gamma = 10 ): 0.796
+
+Error rate RBF SVM with PCA (m=5, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54576)  RBF SVM with PCA (m=5, k = 1, C = 1, gamma = 10 ): 0.987
+
+Error rate RBF SVM with PCA (m=6, k = 0, C = 1, gamma = 1): 35.13%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=6, k = 0, C = 1, gamma = 1 ): 0.792
+
+Error rate RBF SVM with PCA (m=6, k = 1, C = 1, gamma = 1): 33.17%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53764)  RBF SVM with PCA (m=6, k = 1, C = 1, gamma = 1 ): 0.946
+
+Error rate RBF SVM with PCA (m=6, k = 0, C = 1, gamma = 10): 34.75%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=6, k = 0, C = 1, gamma = 10 ): 0.794
+
+Error rate RBF SVM with PCA (m=6, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54578)  RBF SVM with PCA (m=6, k = 1, C = 1, gamma = 10 ): 0.986
+
+Error rate RBF SVM with PCA (m=7, k = 0, C = 1, gamma = 1): 35.35%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=7, k = 0, C = 1, gamma = 1 ): 0.797
+
+Error rate RBF SVM with PCA (m=7, k = 1, C = 1, gamma = 1): 33.17%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53780)  RBF SVM with PCA (m=7, k = 1, C = 1, gamma = 1 ): 0.946
+
+Error rate RBF SVM with PCA (m=7, k = 0, C = 1, gamma = 10): 34.80%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=7, k = 0, C = 1, gamma = 10 ): 0.796
+
+Error rate RBF SVM with PCA (m=7, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54582)  RBF SVM with PCA (m=7, k = 1, C = 1, gamma = 10 ): 0.986
+
+Error rate RBF SVM with PCA (m=8, k = 0, C = 1, gamma = 1): 35.35%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=8, k = 0, C = 1, gamma = 1 ): 0.798
+
+Error rate RBF SVM with PCA (m=8, k = 1, C = 1, gamma = 1): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53789)  RBF SVM with PCA (m=8, k = 1, C = 1, gamma = 1 ): 0.945
+
+Error rate RBF SVM with PCA (m=8, k = 0, C = 1, gamma = 10): 34.80%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=8, k = 0, C = 1, gamma = 10 ): 0.797
+
+Error rate RBF SVM with PCA (m=8, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54583)  RBF SVM with PCA (m=8, k = 1, C = 1, gamma = 10 ): 0.988
+
+Error rate RBF SVM with PCA (m=9, k = 0, C = 1, gamma = 1): 35.35%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=9, k = 0, C = 1, gamma = 1 ): 0.798
+
+Error rate RBF SVM with PCA (m=9, k = 1, C = 1, gamma = 1): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53803)  RBF SVM with PCA (m=9, k = 1, C = 1, gamma = 1 ): 0.942
+
+Error rate RBF SVM with PCA (m=9, k = 0, C = 1, gamma = 10): 34.80%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=9, k = 0, C = 1, gamma = 10 ): 0.797
+
+Error rate RBF SVM with PCA (m=9, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54585)  RBF SVM with PCA (m=9, k = 1, C = 1, gamma = 10 ): 0.988
+
+Error rate RBF SVM with PCA (m=10, k = 0, C = 1, gamma = 1): 35.35%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=10, k = 0, C = 1, gamma = 1 ): 0.798
+
+Error rate RBF SVM with PCA (m=10, k = 1, C = 1, gamma = 1): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53802)  RBF SVM with PCA (m=10, k = 1, C = 1, gamma = 1 ): 0.942
+
+Error rate RBF SVM with PCA (m=10, k = 0, C = 1, gamma = 10): 34.80%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=10, k = 0, C = 1, gamma = 10 ): 0.797
+
+Error rate RBF SVM with PCA (m=10, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54585)  RBF SVM with PCA (m=10, k = 1, C = 1, gamma = 10 ): 0.988
+
+No PCA
+Error rate RBF SVM with PCA (m=11, k = 0, C = 1, gamma = 1): 35.35%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=11, k = 0, C = 1, gamma = 1 ): 0.798
+
+Error rate RBF SVM with PCA (m=11, k = 1, C = 1, gamma = 1): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.53802)  RBF SVM with PCA (m=11, k = 1, C = 1, gamma = 1 ): 0.942
+
+Error rate RBF SVM with PCA (m=11, k = 0, C = 1, gamma = 10): 34.80%
+
+min DCF(prior p1=0.5, optimal threshold: 0.00000)  RBF SVM with PCA (m=11, k = 0, C = 1, gamma = 10 ): 0.797
+
+Error rate RBF SVM with PCA (m=11, k = 1, C = 1, gamma = 10): 33.22%
+
+min DCF(prior p1=0.5, optimal threshold: -0.54585)  RBF SVM with PCA (m=11, k = 1, C = 1, gamma = 10 ): 0.988
+
+
+
+Error rate Polinomial SVM with PCA (m=5, k = 0, C = 1, c = 0, d = 2): 50.03%
+
+min DCF(prior p1=0.5, optimal threshold: 4.74866)  Polinomial SVM with PCA (m=5, k = 0, C = 1, c = 0, d = 2 ): 0.818
+
+Error rate Polinomial SVM with PCA (m=5, k = 0, C = 1, c = 1, d = 2): 32.90%
+
+min DCF(prior p1=0.5, optimal threshold: -7.77660)  Polinomial SVM with PCA (m=5, k = 0, C = 1, c = 1, d = 2 ): 0.841
+
+Error rate Polinomial SVM with PCA (m=5, k = 1, C = 1, c = 0, d = 2): 44.48%
+
+min DCF(prior p1=0.5, optimal threshold: -28.86475)  Polinomial SVM with PCA (m=5, k = 1, C = 1, c = 0, d = 2 ): 0.865
+
+Error rate Polinomial SVM with PCA (m=5, k = 1, C = 1, c = 1, d = 2): 50.24%
+
+min DCF(prior p1=0.5, optimal threshold: -197.55959)  Polinomial SVM with PCA (m=5, k = 1, C = 1, c = 1, d = 2 ): 0.892
+
+Error rate Polinomial SVM with PCA (m=6, k = 0, C = 1, c = 0, d = 2): 46.71%
+
+min DCF(prior p1=0.5, optimal threshold: 1.06280)  Polinomial SVM with PCA (m=6, k = 0, C = 1, c = 0, d = 2 ): 0.795
+
+Error rate Polinomial SVM with PCA (m=6, k = 0, C = 1, c = 1, d = 2): 44.32%
+
+min DCF(prior p1=0.5, optimal threshold: -48.51623)  Polinomial SVM with PCA (m=6, k = 0, C = 1, c = 1, d = 2 ): 0.898
+
+Error rate Polinomial SVM with PCA (m=6, k = 1, C = 1, c = 0, d = 2): 47.91%
+
+min DCF(prior p1=0.5, optimal threshold: -14.11781)  Polinomial SVM with PCA (m=6, k = 1, C = 1, c = 0, d = 2 ): 0.892
+
+Error rate Polinomial SVM with PCA (m=6, k = 1, C = 1, c = 1, d = 2): 45.35%
+
+min DCF(prior p1=0.5, optimal threshold: -14.40293)  Polinomial SVM with PCA (m=6, k = 1, C = 1, c = 1, d = 2 ): 0.874
+
+Error rate Polinomial SVM with PCA (m=7, k = 0, C = 1, c = 0, d = 2): 42.14%
+
+min DCF(prior p1=0.5, optimal threshold: -94.43231)  Polinomial SVM with PCA (m=7, k = 0, C = 1, c = 0, d = 2 ): 0.860
+
+Error rate Polinomial SVM with PCA (m=7, k = 0, C = 1, c = 1, d = 2): 43.34%
+
+min DCF(prior p1=0.5, optimal threshold: -15.92525)  Polinomial SVM with PCA (m=7, k = 0, C = 1, c = 1, d = 2 ): 0.838
+
+Error rate Polinomial SVM with PCA (m=7, k = 1, C = 1, c = 0, d = 2): 45.41%
+
+min DCF(prior p1=0.5, optimal threshold: -261.38683)  Polinomial SVM with PCA (m=7, k = 1, C = 1, c = 0, d = 2 ): 0.907
+
+Error rate Polinomial SVM with PCA (m=7, k = 1, C = 1, c = 1, d = 2): 41.44%
+
+min DCF(prior p1=0.5, optimal threshold: -16.41691)  Polinomial SVM with PCA (m=7, k = 1, C = 1, c = 1, d = 2 ): 0.724
+
+Error rate Polinomial SVM with PCA (m=8, k = 0, C = 1, c = 0, d = 2): 47.63%
+
+min DCF(prior p1=0.5, optimal threshold: -35.94138)  Polinomial SVM with PCA (m=8, k = 0, C = 1, c = 0, d = 2 ): 0.915
+
+Error rate Polinomial SVM with PCA (m=8, k = 0, C = 1, c = 1, d = 2): 37.30%
+
+min DCF(prior p1=0.5, optimal threshold: 0.66203)  Polinomial SVM with PCA (m=8, k = 0, C = 1, c = 1, d = 2 ): 0.716
+
+Error rate Polinomial SVM with PCA (m=8, k = 1, C = 1, c = 0, d = 2): 53.62%
+
+min DCF(prior p1=0.5, optimal threshold: -38.03196)  Polinomial SVM with PCA (m=8, k = 1, C = 1, c = 0, d = 2 ): 0.897
+
+Error rate Polinomial SVM with PCA (m=8, k = 1, C = 1, c = 1, d = 2): 37.14%
+
+min DCF(prior p1=0.5, optimal threshold: -93.67107)  Polinomial SVM with PCA (m=8, k = 1, C = 1, c = 1, d = 2 ): 0.878
+
+Error rate Polinomial SVM with PCA (m=9, k = 0, C = 1, c = 0, d = 2): 50.95%
+
+min DCF(prior p1=0.5, optimal threshold: 18.51495)  Polinomial SVM with PCA (m=9, k = 0, C = 1, c = 0, d = 2 ): 0.887
+
+Error rate Polinomial SVM with PCA (m=9, k = 0, C = 1, c = 1, d = 2): 41.71%
+
+min DCF(prior p1=0.5, optimal threshold: -13.39902)  Polinomial SVM with PCA (m=9, k = 0, C = 1, c = 1, d = 2 ): 0.794
+
+Error rate Polinomial SVM with PCA (m=9, k = 1, C = 1, c = 0, d = 2): 33.61%
+
+min DCF(prior p1=0.5, optimal threshold: -63.67030)  Polinomial SVM with PCA (m=9, k = 1, C = 1, c = 0, d = 2 ): 0.852
+
+Error rate Polinomial SVM with PCA (m=9, k = 1, C = 1, c = 1, d = 2): 33.44%
+
+min DCF(prior p1=0.5, optimal threshold: -350.37305)  Polinomial SVM with PCA (m=9, k = 1, C = 1, c = 1, d = 2 ): 0.848
+
+Error rate Polinomial SVM with PCA (m=10, k = 0, C = 1, c = 0, d = 2): 42.25%
+
+min DCF(prior p1=0.5, optimal threshold: -4.30207)  Polinomial SVM with PCA (m=10, k = 0, C = 1, c = 0, d = 2 ): 0.819
+
+Error rate Polinomial SVM with PCA (m=10, k = 0, C = 1, c = 1, d = 2): 34.75%
+
+min DCF(prior p1=0.5, optimal threshold: -177.74610)  Polinomial SVM with PCA (m=10, k = 0, C = 1, c = 1, d = 2 ): 0.855
+
+Error rate Polinomial SVM with PCA (m=10, k = 1, C = 1, c = 0, d = 2): 39.37%
+
+min DCF(prior p1=0.5, optimal threshold: -157.86514)  Polinomial SVM with PCA (m=10, k = 1, C = 1, c = 0, d = 2 ): 0.892
+
+Error rate Polinomial SVM with PCA (m=10, k = 1, C = 1, c = 1, d = 2): 41.60%
+
+min DCF(prior p1=0.5, optimal threshold: -203.87479)  Polinomial SVM with PCA (m=10, k = 1, C = 1, c = 1, d = 2 ): 0.937
+
+No PCA
+Error rate Polinomial SVM with PCA (m=11, k = 0, C = 1, c = 0, d = 2): 42.36%
+
+min DCF(prior p1=0.5, optimal threshold: -15.71362)  Polinomial SVM with PCA (m=11, k = 0, C = 1, c = 0, d = 2 ): 0.755
+
+Error rate Polinomial SVM with PCA (m=11, k = 0, C = 1, c = 1, d = 2): 36.76%
+
+min DCF(prior p1=0.5, optimal threshold: -221.53654)  Polinomial SVM with PCA (m=11, k = 0, C = 1, c = 1, d = 2 ): 0.887
+
+Error rate Polinomial SVM with PCA (m=11, k = 1, C = 1, c = 0, d = 2): 33.44%
+
+min DCF(prior p1=0.5, optimal threshold: -209.22629)  Polinomial SVM with PCA (m=11, k = 1, C = 1, c = 0, d = 2 ): 0.854
+
+Error rate Polinomial SVM with PCA (m=11, k = 1, C = 1, c = 1, d = 2): 48.94%
+
+min DCF(prior p1=0.5, optimal threshold: -54.19657)  Polinomial SVM with PCA (m=11, k = 1, C = 1, c = 1, d = 2 ): 0.933
+
