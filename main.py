@@ -7,7 +7,7 @@ from PCA import PCAforDTE
 import testModel
 from testModel import testLogisticRegression
 from classificatori import computeParametersForLogisticRegression
-from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, compute_min_dcf_different_priors
+from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, compute_min_dcf_prior
 
 
     
@@ -15,8 +15,8 @@ if __name__ == '__main__':
     (DTR, LTR) = loadData.load_data_TR()
     
     """plot histograms of training data"""
-    plot_hist(DTR, LTR);
-    plot_scatter(DTR, LTR)
+    #plot_hist(DTR, LTR);
+    #plot_scatter(DTR, LTR)
     
     
     
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         the function is unaware of what the test data look like. DTE variables inside the compareAlgorithmsAndDimentionalityReduction function 
         refer to evaluation data produced via splitting of DTR
     """
-    #compareAlgorithmsAndDimentionalityReduction(DTR, LTR) 
+    compareAlgorithmsAndDimentionalityReduction(DTR, LTR) 
     
     
     
@@ -49,17 +49,17 @@ if __name__ == '__main__':
     w, b = computeParametersForLogisticRegression(DTRPCA, LTR, l)
     acc, err, scores = testLogisticRegression(w, b, DTEPCA, LTE)
     scores = numpy.hstack(scores)
-    min_DCF_priors = compute_min_dcf_different_priors(scores, LTE)
+    min_DCF = compute_min_dcf_prior(scores, LTE)
     print("Error rate with test data (with PCA): " + str(format(err * 100, ".2f")) + "%\n")
-    print("min DCF with test data with p = 0.5 (with PCA): " + str(format(min_DCF_priors[0][1], ".3f")) + "%\n")
+    print("min DCF with test data with p = 0.5 (with PCA): " + str(format(min_DCF, ".3f")) + "%\n")
     
     l = 1/1000
     w, b = computeParametersForLogisticRegression(DTR, LTR, l)
     acc, err, scores = testLogisticRegression(w, b, DTE, LTE)
     scores = numpy.hstack(scores)
-    min_DCF_priors = compute_min_dcf_different_priors(scores, LTE)
+    min_DCF = compute_min_dcf_prior(scores, LTE)
     print("Error rate with test data (NO PCA): " + str(format(err * 100, ".2f")) + "%\n")
-    print("min DCF with test data with p = 0.5 (NO PCA): " + str(format(min_DCF_priors[0][1], ".3f")) + "%\n")
+    print("min DCF with test data with p = 0.5 (NO PCA): " + str(format(min_DCF, ".3f")) + "%\n")
     
 
     
