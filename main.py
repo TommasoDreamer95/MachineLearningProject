@@ -10,7 +10,8 @@ from classificatori import computeParametersForLogisticRegression, computeMeanAn
     computeMeanAndCovarianceForMultiVariate, computeMeanAndCovarianceForTied, compute_matrix_Z_kernel_SVM, \
         computeParameterForKernelRBFSVM, compute_RBF_kernel, computeParametersForLinearSVM, \
             computeParameterForKernelPolynomialSVM, compute_polynomial_kernel, computeGMMs
-from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, compute_min_dcf_prior
+from compareAlgorithms import compareAlgorithmsAndDimentionalityReduction, compute_min_dcf_prior, \
+    find_best_parameters_classifiers
 
 
     
@@ -33,7 +34,12 @@ if __name__ == '__main__':
     """
     compareAlgorithmsAndDimentionalityReduction(DTR, LTR) 
     
-    
+    """
+      print in the terminal a json containing the best min DCF for each classifier, useful to easily locate the
+      best parameters for each classifier
+    """
+    find_best_parameters_classifiers()
+    print("")
     
     """based on the compare algorithms output the best algorithm should be logistic regression, 
         applied to either unprocessed data or to data preprocessed with PCA in order to obtain 10 dimentions out of the initial 11 ones
@@ -45,19 +51,7 @@ if __name__ == '__main__':
     """
     
     (DTE, LTE) = loadData.load_data_TE()
-    
-    """Logistic regression with PCA"""
-    """
-    m=10
-    DTRPCA, DTEPCA = PCAforDTE(DTR, DTE, m)
-    l = 1/1000
-    w, b = computeParametersForLogisticRegression(DTRPCA, LTR, l)
-    acc, err, scores = testLogisticRegression(w, b, DTEPCA, LTE)
-    scores = numpy.hstack(scores)
-    min_DCF, _ = compute_min_dcf_prior(scores, LTE)
-    print("Error rate with test data (with PCA): " + str(format(err * 100, ".2f")) + "%\n")
-    print("min DCF with test data with p = 0.5 (with PCA): " + str(format(min_DCF, ".3f")) + "\n")
-    """
+    print("###start computation on the evaluation set###\n")
     
     """MVG classifier with PCA(m=8) on test set"""
     m = 8

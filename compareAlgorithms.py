@@ -10,6 +10,7 @@ Created on Mon May  3 21:10:29 2021
 import numpy
 from PCA import PCA
 import sys
+import re
 
 from testModel import testModel, testLogisticRegression, testLinearSVM, testGMM, testKernelSVM, testPolinomialSVM
 from classificatori import computeMeanAndCovarianceForMultiVariate, \
@@ -340,3 +341,32 @@ def compareAlgorithmsAndDimentionalityReduction(DTR, LTR):
                     print("min DCF(prior p1=0.5, optimal threshold: {})  Polinomial SVM with PCA (m={}, k = {}, C = {}, c = {}, d = {} ): {}\n".format(str(format(optimal_threshold_PoliSVM2, ".5f")), str(m), str(k), str(C), str(c), str(d), str(format(min_DCF_PoliSVM2, ".3f") )))    
     
     sys.stdout = original_stdout
+
+def find_best_parameters_classifiers():
+    filename = "AlgorithmsOutput.txt"
+    str_line = ""
+    min_DCF = 100.0
+
+    dict_min_DCF = {
+        re.compile("MVG"): ["", 100.0],
+        re.compile("Naive"): ["", 100.0],
+        re.compile("Tied"): ["", 100.0],
+        re.compile("Logistic Regression") : ["", 100.0],
+        re.compile("Gaussian Mixture Model.+diagonal"): ["", 100.0],
+        re.compile("Gaussian Mixture Model.+standard"): ["", 100.0],
+        re.compile("Linear SVM"): ["", 100.0],
+        re.compile("RBF SVM"): ["", 100.0],
+        re.compile("Polinomial SVM"): ["", 100.0]
+        
+    }
+    with open(filename, "r") as fp:
+        lines = fp.readlines()
+        for line in lines:
+            if not(line == "") and len(line.split()) > 0 and "%" not in line.split()[-1] and "No PCA" not in line:
+                for type_classifier in dict_min_DCF:
+                    if type_classifier.search(line):
+                        DCF_line = float(line.split()[-1])
+                        if (DCF_line < dict_min_DCF[type_classifier][1]):
+                            dict_min_DCF[type_classifier][0] = line
+                            dict_min_DCF[type_classifier][1] = DCF_line
+    print(dict_min_DCF)
